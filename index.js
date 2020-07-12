@@ -8,12 +8,8 @@ const app = new App({
 
 app.command('/deploy', async ({ command, ack, say }) => {
     // Acknowledge command request
-    // console.log('test: ' + command);
-    // await ack();
-
-    // await say(`${command.text}`);
-
-
+    await ack();
+    await say(`Hi there! ${command.text}`);
 });
 
 (async () => {
