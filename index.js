@@ -1,3 +1,4 @@
+require('dotenv').config();
 const {App} = require('@slack/bolt');
 
 // Initializes your app with your bot token and signing secret
@@ -10,12 +11,14 @@ app.command('/deploy', async ({command, ack, say}) => {
     // Acknowledge command request
     await ack();
 
-    let reply = 'Command option not recognized, if you need help, you can use "/deploy help"';
+    let reply = 'Command option not recognized, if you need help, you can use "/deploy help" \n';
+    const help = 'Welcome to deployer! \n This tool allows to deploy from slack to github utilizing github actions \n ' +
+        'To perform a deploy, please follow this structure \n' +
+        '/deploy branch_name environment \n' +
+        'ie: /deploy feature/my-feat staging';
+
     if (command.text === 'help' || command.text === '?') {
-        reply = 'Welcome to deployer! \n This tool allows to deploy from slack to github utilizing github actions \n ' +
-            'To perform a deploy, please follow this structure \n' +
-            '/deploy branch_name environment \n' +
-            'ie: /deploy feature/my-feat staging'
+        reply = help;
     }
 
     //read deployment commands
@@ -25,6 +28,9 @@ app.command('/deploy', async ({command, ack, say}) => {
         reply = `Deploying branch: ${commandContext[1]} on ${commandContext[2]} \n Attempting to initiate Github Action Workflow ...`;
 
         console.log(commandContext);
+    } else {
+        //command not recognized
+        reply += help;
     }
 
     await say(reply);
