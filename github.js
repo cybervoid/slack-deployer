@@ -76,9 +76,7 @@ function matchBranchName(context, branchList) {
     let res = false;
 
     for (let i = 1; i <= 2; i++) {
-        let regExp = RegExp(context[i])
-
-        const branch = branchList.find(el => el.name.search(regExp) !== -1)
+        const branch = branchList.find(el => el.name === context[i])
 
         if (branch) {
             res = {
@@ -90,7 +88,6 @@ function matchBranchName(context, branchList) {
     }
 
     return res
-
 }
 
 async function runWorkflow(name, branch) {

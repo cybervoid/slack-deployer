@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/github.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +26,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1eWq5Qm7FKk8ADG7HVl3An9ZK1X" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -72,7 +76,7 @@
       <updated>1594447512597</updated>
       <workItem from="1594447514411" duration="3318000" />
       <workItem from="1594670187895" duration="21162000" />
-      <workItem from="1594755374668" duration="10192000" />
+      <workItem from="1594755374668" duration="11441000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -144,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594763903669</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="- added docker settings">
+      <created>1594767597065</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1594767597065</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +164,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="- reads command from slack with instructions" />
     <MESSAGE value="- organized entry point function" />
     <MESSAGE value="- working connection with github" />
@@ -160,7 +172,8 @@
     <MESSAGE value="- working flow" />
     <MESSAGE value="- improvement to the branch searching logic" />
     <MESSAGE value="- improve error logging to slack" />
-    <option name="LAST_COMMIT_MESSAGE" value="- improve error logging to slack" />
+    <MESSAGE value="- added docker settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="- added docker settings" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -177,18 +190,18 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="988" y="247" key="#xdebugger.evaluate/0.23.1680.1027@0.23.1680.1027" timestamp="1594730690748" />
-    <state x="854" y="130" key="CommitChangelistDialog2" timestamp="1594763903579">
+    <state x="854" y="130" key="CommitChangelistDialog2" timestamp="1594767596956">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="854" y="130" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1594763903579" />
+    <state x="854" y="130" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1594767596956" />
     <state width="611" height="466" key="DebuggerActiveHint" timestamp="1594755970293">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="611" height="466" key="DebuggerActiveHint/0.23.1680.1027@0.23.1680.1027" timestamp="1594755970293" />
-    <state x="501" y="123" width="1079" height="827" key="DiffContextDialog" timestamp="1594764134123">
+    <state x="501" y="123" width="1079" height="827" key="DiffContextDialog" timestamp="1594768860087">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="501" y="123" width="1079" height="827" key="DiffContextDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1594764134123" />
+    <state x="501" y="123" width="1079" height="827" key="DiffContextDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1594768860087" />
     <state width="798" height="346" key="GridCell.Tab.0.bottom" timestamp="1594764090470">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -257,10 +270,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="1048" y="246" key="RollbackChangesDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1594525944822" />
-    <state x="860" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594763904682">
+    <state x="860" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594767598454">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="860" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1594763904682" />
+    <state x="860" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1594767598454" />
     <state x="771" y="272" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1594736148467">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -273,12 +286,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/github.js</url>
-          <line>78</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/github.js</url>
           <line>43</line>
