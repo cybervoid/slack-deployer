@@ -1,43 +1,98 @@
 axios = require('axios');
 axios.defaults.headers.common = {'Authorization': `bearer ${process.env.GA_TOKEN}`, "Content-Type": "application/json"}
-axios.defaults.baseURL = 'https://api.github.com'
+axios.defaults.baseURL = `https://api.github.com/repos/${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}/`;
 
 module.exports.runDeployment = async (context) => {
 
-    const workflows = await listWorkFlows();
-    const res = {
+    let res = {
         'success': false
     };
 
-    if (workflows.workflows) {
-        const param1 = context[1];
-        const regExp = RegExp(param1);
+    const params = await getCommandParameters(context);
+    if (params) {
+        const workflows = await listWorkFlows();
+        if (workflows.workflows) {
+            const workflowParam = params['server'];
+            const regExp = RegExp(workflowParam);
 
-        let found = workflows.workflows.find(element => regExp.exec(element.name));
-        if (found) {
-            console.log(`found status: ${found.name}`)
+            let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
+            if (workFlowFile) {
+                //if workflow found, get the filename
+                // const res = runWorkflow(found.name + '.yml');
+                res = {
+                    'success': true,
+                    'message': `Deploying to : ${workFlowFile.name}`
+                }
+                console.log(`Deploying to : ${workFlowFile.name}`)
+            } else {
+                res['message'] = `Could not find a workflow matching ${workflowParam}`
+            }
         } else {
-            //try the second parameter in case the order is reversed
-            const param2 = context[2];
-            const regExp = RegExp(param2);
-
-            found = workflows.workflows.find(element => regExp.exec(element.name));
+            res['message'] = `Could get workflow list for this repo. More info: ${workflows}`
         }
 
-        if (found) {
-            //if workflow found, get the filename
-            const res = runWorkflow(found.name + '.yml');
-        }
-        console.log(`found ${found.name}`);
     } else {
-        res['message'] = `Could not find workflows listed for this repo. More info: ${workflows}`
+        res['message'] = params['message']
     }
 
     return res;
 }
 
+/**
+ *
+ */
+async function getCommandParameters(context) {
+    const errorMsg = `Error fetching branch list. More Info:`
+    let res = {
+        'success': false
+    }
+    try {
+        const reqRes = await axios.get('branches')
+        if (reqRes.status === 200) {
+            const branches = reqRes.data;
+
+            let branchRes = matchBranchName(context, branches);
+
+            if (branchRes) {
+                //found the branch
+                res = {
+                    'success': true,
+                    'branch': branchRes['branch'],
+                    'server': branchRes['server']
+                }
+            } else {
+                res['message'] = `${errorMsg} branch provided could not be found in the branch list`
+            }
+        } else {
+            res['message'] = `${errorMsg} ${reqRes.message}`
+        }
+    } catch (e) {
+        res['message'] = `${errorMsg} ${e.message}`;
+    }
+
+    return res
+}
+
+function matchBranchName(context, branchList) {
+    let res = false;
+
+    for (let i = 1; i <= 2; i++) {
+        let regExp = /context[i]/i
+        if (branchList.find(el => el.name.search(regExp)) !== -1) {
+            res = {
+                'branch': context[i],
+                'server': context[i === 1 ? 2 : 1]
+            }
+            break
+        }
+    }
+
+    return res
+
+}
+
 async function runWorkflow(name) {
-    const url = `repos/${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}/actions/workflows/${name}/dispatches`;
+    const url = `actions/workflows/${name}/dispatches`;
     const err = `Error trying to initiate workflow ${name}`;
     const res = {
         'success': false
@@ -65,7 +120,7 @@ async function runWorkflow(name) {
 }
 
 async function listWorkFlows() {
-    return axios.get(`repos/${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}/actions/workflows`)
+    return axios.get(`actions/workflows`)
         .then((res) => {
             return res.data;
         })
