@@ -79,10 +79,13 @@ function matchBranchName(context, branchList) {
     let res = false;
 
     for (let i = 1; i <= 2; i++) {
-        let regExp = /context[i]/i
-        if (branchList.find(el => el.name.search(regExp)) !== -1) {
+        let regExp = RegExp(context[i])
+
+        const branch = branchList.find(el => el.name.search(regExp) !== -1)
+
+        if (branch) {
             res = {
-                'branch': context[i],
+                'branch': branch.name,
                 'server': context[i === 1 ? 2 : 1]
             }
             break

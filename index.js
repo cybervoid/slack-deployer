@@ -26,7 +26,7 @@ app.command('/deploy', async ({command, ack, say}) => {
     const cmdReg = new RegExp('(.*) (.*)')
     const commandContext = cmdReg.exec(command.text);
     if (commandContext) {
-        reply = `Attempting to initiate Github Action deployment workflow on \`${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}\` \n`;
+        reply = `Attempting to initiate Github Action deployment workflow on \`${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}\` with the following parameters \`${commandContext[1]}\` and \`${commandContext[2]}\` \n`;
         const res = await github.runDeployment(commandContext);
         if (res.success) {
             reply += res.message;
