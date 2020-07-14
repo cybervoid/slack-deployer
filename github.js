@@ -27,7 +27,7 @@ module.exports.runDeployment = async (context) => {
                     res['success'] = true
                 }
             } else {
-                res['message'] += `Could not find a workflow matching ${workflowParam}`
+                res['message'] += `Could not find a workflow matching \`${workflowParam}\``
             }
         } else {
             res['message'] += `Could not get workflow list for this repo. More info: ${workflows} \n`
