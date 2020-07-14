@@ -9,30 +9,32 @@ module.exports.runDeployment = async (context) => {
     };
 
     const params = await getCommandParameters(context);
+    res['message'] = params.message;
     if (params) {
         const workflows = await listWorkFlows();
+        res['message'] += `Fetching workflow list for selected repo ... \n`
         if (workflows.workflows) {
             const workflowParam = params['server'];
+            const branch = params['branch']
             const regExp = RegExp(workflowParam);
 
             let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
             if (workFlowFile) {
-                //if workflow found, get the filename
-                // const res = runWorkflow(found.name + '.yml');
-                res = {
-                    'success': true,
-                    'message': `Deploying to : ${workFlowFile.name}`
+                res['message'] += `Matching workflow found as \`${workFlowFile.name}\` \n Requesting github to run workflow \`${workFlowFile.name}\` for branch \`${branch}\` \n`
+                const runRes = await runWorkflow(`${workFlowFile.name}.yml`, branch)
+                res['message'] += runRes.message
+                if (runRes.success) {
+                    res['success'] = true
                 }
-                console.log(`Deploying to : ${workFlowFile.name}`)
             } else {
-                res['message'] = `Could not find a workflow matching ${workflowParam}`
+                res['message'] += `Could not find a workflow matching ${workflowParam}`
             }
         } else {
-            res['message'] = `Could get workflow list for this repo. More info: ${workflows}`
+            res['message'] += `Could not get workflow list for this repo. More info: ${workflows}`
         }
 
     } else {
-        res['message'] = params['message']
+        res['message'] += params['message']
     }
 
     return res;
@@ -54,11 +56,11 @@ async function getCommandParameters(context) {
             let branchRes = matchBranchName(context, branches);
 
             if (branchRes) {
-                //found the branch
                 res = {
                     'success': true,
                     'branch': branchRes['branch'],
-                    'server': branchRes['server']
+                    'server': branchRes['server'],
+                    'message': `Listing repo branches ... \n Found requested branch \`${branchRes['branch']}\` \n`
                 }
             } else {
                 res['message'] = `${errorMsg} branch provided could not be found in the branch list`
@@ -91,32 +93,31 @@ function matchBranchName(context, branchList) {
 
 }
 
-async function runWorkflow(name) {
+async function runWorkflow(name, branch) {
     const url = `actions/workflows/${name}/dispatches`;
-    const err = `Error trying to initiate workflow ${name}`;
     const res = {
-        'success': false
+        'success': false,
+        'message': `Error trying to initiate workflow ${name}`
     };
 
     try {
         const creationRes = await axios.post(url, {
             "ref": "refs/heads/develop",
             "inputs": {
-                "branch_name": "develop"
+                "branch_name": branch
             }
         });
         if (creationRes.status === 204) {
             res['success'] = true;
             res['message'] = 'Deployment workflow triggered successfully'
         } else {
-            res['message'] = `${err}, return request status ${creationRes.status}, data: ${creationRes.data}`
+            res['message'] += `, return request status ${creationRes.status}, data: ${creationRes.data}`
         }
     } catch (e) {
-        res['message'] = `${err}, error response: ${e.message}`;
-        console.log(res['message']);
+        res['message'] += `, error response: ${e.message}`;
     }
 
-    console.log(res);
+    return res
 }
 
 async function listWorkFlows() {
