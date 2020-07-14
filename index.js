@@ -1,5 +1,6 @@
 require('dotenv').config();
 const {App} = require('@slack/bolt');
+const github = require('./github');
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
@@ -25,9 +26,13 @@ app.command('/deploy', async ({command, ack, say}) => {
     const cmdReg = new RegExp('(.*) (.*)')
     const commandContext = cmdReg.exec(command.text);
     if (commandContext) {
-        reply = `Deploying branch: ${commandContext[1]} on ${commandContext[2]} \n Attempting to initiate Github Action Workflow ...`;
-
-        console.log(commandContext);
+        reply = `Attempting to initiate Github Action deployment workflow on \`${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}\` \n`;
+        const res = await github.runDeployment(commandContext);
+        if (res.success) {
+            reply += res.message;
+        } else {
+            reply += `Could not complete deployment. More info: ${res.message}`
+        }
     } else {
         //command not recognized
         reply += help;
@@ -42,3 +47,5 @@ app.command('/deploy', async ({command, ack, say}) => {
 
     console.log('⚡️ Bolt app is running!');
 })();
+
+// console.log(github.findDeploymentWorkflow(["Full name", "qa", "develop"]))
