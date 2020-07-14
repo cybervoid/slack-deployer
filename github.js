@@ -10,7 +10,7 @@ module.exports.runDeployment = async (context) => {
 
     const params = await getCommandParameters(context);
     res['message'] = params.message;
-    if (params) {
+    if (params.success) {
         const workflows = await listWorkFlows();
         res['message'] += `Fetching workflow list for selected repo ... \n`
         if (workflows.workflows) {
@@ -30,13 +30,10 @@ module.exports.runDeployment = async (context) => {
                 res['message'] += `Could not find a workflow matching ${workflowParam}`
             }
         } else {
-            res['message'] += `Could not get workflow list for this repo. More info: ${workflows}`
+            res['message'] += `Could not get workflow list for this repo. More info: ${workflows} \n`
         }
 
-    } else {
-        res['message'] += params['message']
     }
-
     return res;
 }
 
@@ -63,13 +60,13 @@ async function getCommandParameters(context) {
                     'message': `Listing repo branches ... \n Found requested branch \`${branchRes['branch']}\` \n`
                 }
             } else {
-                res['message'] = `${errorMsg} branch provided could not be found in the branch list`
+                res['message'] = `${errorMsg} branch provided could not be found in the branch list \n`
             }
         } else {
-            res['message'] = `${errorMsg} ${reqRes.message}`
+            res['message'] = `${errorMsg} ${reqRes.message} \n`
         }
     } catch (e) {
-        res['message'] = `${errorMsg} ${e.message}`;
+        res['message'] = `${errorMsg} ${e.message} \n`;
     }
 
     return res
