@@ -1,11 +1,14 @@
 require('dotenv').config();
-const {App} = require('@slack/bolt');
+const {App, ExpressReceiver} = require('@slack/bolt');
 const github = require('./github');
 
 // Initializes your app with your bot token and signing secret
+const receiver = new ExpressReceiver({signingSecret: process.env.SLACK_SIGNING_SECRET});
+
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
-    signingSecret: process.env.SLACK_SIGNING_SECRET
+    signingSecret: process.env.SLACK_SIGNING_SECRET,
+    receiver
 });
 
 app.command('/deploy', async ({command, ack, say}) => {
@@ -42,11 +45,15 @@ app.command('/deploy', async ({command, ack, say}) => {
     await say(reply);
 });
 
+// Other web requests are methods on receiver.router
+receiver.router.get('/healthz', (req, res) => {
+    // You're working with an express req and res now.
+    res.send('service is up');
+});
+
 (async () => {
     // Start your app
     await app.start(process.env.PORT || 3000);
 
     console.log('⚡️ Bolt app is running!');
 })();
-
-// console.log(github.findDeploymentWorkflow(["Full name", "qa", "develop"]))
