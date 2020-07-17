@@ -23,23 +23,23 @@ app.command('/deploy', async ({command, ack, say}) => {
 
     if (command.text === 'help' || command.text === '?') {
         reply = help;
-    }
-
-    //read deployment commands
-    const cmdReg = new RegExp('(.*) (.*)')
-    const commandContext = cmdReg.exec(command.text);
-    if (commandContext) {
-        reply = `Attempting to initiate Github Action deployment workflow on \`${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}\` with the following parameters \`${commandContext[1]}\` and \`${commandContext[2]}\` \n`;
-        const res = await github.runDeployment(commandContext);
-        if (res.success) {
-            const url = `https://github.com/${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}/actions`
-            reply += `${res.message} \n To follow progress head to ${url}`;
-        } else {
-            reply += `Could not complete deployment. More info: ${res.message}`
-        }
     } else {
-        //command not recognized
-        reply += help;
+        //read deployment commands
+        const cmdReg = new RegExp('(.*) (.*)')
+        const commandContext = cmdReg.exec(command.text);
+        if (commandContext) {
+            reply = `Attempting to initiate Github Action deployment workflow on \`${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}\` with the following parameters \`${commandContext[1]}\` and \`${commandContext[2]}\` \n`;
+            const res = await github.runDeployment(commandContext);
+            if (res.success) {
+                const url = `https://github.com/${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}/actions`
+                reply += `${res.message} \n To follow progress head to ${url}`;
+            } else {
+                reply += `Could not complete deployment. More info: ${res.message}`
+            }
+        } else {
+            //command not recognized
+            reply += help;
+        }
     }
 
     await say(reply);

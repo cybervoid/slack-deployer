@@ -1,5 +1,5 @@
 #!/bin/bash
-SHA1="deployer:master-$(git rev-parse --verify HEAD)"
+SHA1="deployer:master-$(git rev-parse --verify HEAD)-1"
 REPO=969105443985.dkr.ecr.us-east-1.amazonaws.com
 docker image remove ${REPO}/"${SHA1}"
 
