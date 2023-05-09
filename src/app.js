@@ -1,28 +1,38 @@
+const {App, AwsLambdaReceiver} = require('@slack/bolt');
+
+const awsLambdaReceiver = new AwsLambdaReceiver({
+    signingSecret: process.env.SIGNATURE,
+});
+
+const app = new App({
+    token: process.env.TOKEN,
+    receiver: awsLambdaReceiver,
+});
+
+app.command('/deploy', async ({command, ack, say}) => {
+    // Acknowledge command request
+    await ack();
+
+    let reply = 'Command option not recognized, if you need help, you can use "/deploy help" \n';
+    const help = 'Welcome to `deployer`! \n This tool allows to deploy from slack to github utilizing github actions \n ' +
+        'To perform a deploy, please follow this structure \n' +
+        '```/deploy branch_name environment``` \n' +
+        'ie: ```/deploy feature/my-feat staging```';
+
+    if (command.text === 'help' || command.text === '?') {
+        reply = help;
+    }
+
+    await say(reply);
+});
+
+
 exports.handler = async (event, context) => {
     try {
-        // Log event and context object to CloudWatch Logs
-        console.log("Event: ", JSON.stringify(event, null, 2));
-        console.log("Context: ", JSON.stringify(context, null, 2));
-        // Example function environment variables
-        console.log("Variable1: ", process.env.Variable1);
-        console.log("Variable2: ", process.env.Variable2);
 
-        // Create event object to return to caller
-        const eventObj = {
-            functionName: context.functionName,
-            xForwardedFor: event.headers["x-forwarded-for"],
-            contentType: event.headers["content-type"],
-            method: event.requestContext.http.method,
-            rawPath: event.rawPath,
-            queryString: event.queryStringParameters,
-            body: event.body,
-        };
+        const handler = await awsLambdaReceiver.start();
+        return handler(event, context);
 
-        const response = {
-            statusCode: 200,
-            body: JSON.stringify(eventObj, null, 2),
-        };
-        return response;
     } catch (error) {
         console.error(error);
         throw new Error(error);

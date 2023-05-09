@@ -15,6 +15,13 @@ Parameters:
     Description: Slack Deployer
     Type: String
     Default: slack-deployer
+  SlackToken:
+    Description: Slack Token for Bolt
+    Type: String
+  SlackSignature:
+    Description: SLACK SIGNING SECRET
+    Type: String
+
 
 Resources:
   # API Gateway HTTP API
@@ -28,9 +35,6 @@ Resources:
         AllowOrigins:
           - '*'
         AllowMethods:
-          - GET
-          - HEAD
-          - OPTIONS
           - POST
       Target: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${LambdaFunction}/invocations
   # Lambda Function - uses Globals to define additional configuration values
@@ -42,8 +46,8 @@ Resources:
       # Example function environment variables
       Environment:
         Variables:
-          Variable1: 1234
-          Variable2: ABCD
+          TOKEN: !Ref SlackToken
+          SIGNATURE: !Ref SlackSignature
   # Function permissions grant an AWS service or another account permission to use a function
   FunctionResourcePermission:
     Type: 'AWS::Lambda::Permission'

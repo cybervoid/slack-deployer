@@ -5,20 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/samconfig.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/deploy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/github.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samconfig.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
+    </list>
+    <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/tests/app.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,12 +52,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "20.0.0",
+    "javascript.nodejs.core.library.typings.version": "20.0.0",
     "last_opened_file_path": "/Users/rafag/Documents/projects/personal/slack-deployer",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -93,6 +93,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="" />
+      <changelist id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="" />
       <created>1594447512597</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -102,7 +103,7 @@
       <workItem from="1594755374668" duration="11544000" />
       <workItem from="1594780143492" duration="1843000" />
       <workItem from="1594859752875" duration="5569000" />
-      <workItem from="1683604257571" duration="1899000" />
+      <workItem from="1683604257571" duration="7506000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -202,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594868352500</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added new template.yaml for aws sam">
+      <created>1683606233344</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1683606233344</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,115 +231,10 @@
     <MESSAGE value="- improved branch detection process" />
     <MESSAGE value="- added health check endpoint" />
     <MESSAGE value="- working deployment" />
-    <option name="LAST_COMMIT_MESSAGE" value="- working deployment" />
+    <MESSAGE value="added new template.yaml for aws sam" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new template.yaml for aws sam" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="609" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594685998098">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="609" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1594685998098" />
-    <state x="957" y="241" key="#run" timestamp="1594685923186">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="957" y="241" key="#run/0.23.1680.1027@0.23.1680.1027" timestamp="1594685923186" />
-    <state x="988" y="247" key="#xdebugger.evaluate" timestamp="1594730690748">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="988" y="247" key="#xdebugger.evaluate/0.23.1680.1027@0.23.1680.1027" timestamp="1594730690748" />
-    <state x="854" y="130" key="CommitChangelistDialog2" timestamp="1594868349945">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="854" y="130" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1594868349945" />
-    <state width="611" height="466" key="DebuggerActiveHint" timestamp="1594755970293">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="611" height="466" key="DebuggerActiveHint/0.23.1680.1027@0.23.1680.1027" timestamp="1594755970293" />
-    <state x="501" y="123" width="1079" height="827" key="DiffContextDialog" timestamp="1594868578811">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="501" y="123" width="1079" height="827" key="DiffContextDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1594868578811" />
-    <state width="798" height="346" key="GridCell.Tab.0.bottom" timestamp="1594820273190">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273190" />
-    <state width="798" height="346" key="GridCell.Tab.0.center" timestamp="1594820273189">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273189" />
-    <state width="798" height="346" key="GridCell.Tab.0.left" timestamp="1594820273189">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273189" />
-    <state width="798" height="346" key="GridCell.Tab.0.right" timestamp="1594820273190">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273190" />
-    <state width="798" height="346" key="GridCell.Tab.1.bottom" timestamp="1594820273191">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273191" />
-    <state width="798" height="346" key="GridCell.Tab.1.center" timestamp="1594820273191">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273191" />
-    <state width="798" height="346" key="GridCell.Tab.1.left" timestamp="1594820273191">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273191" />
-    <state width="798" height="346" key="GridCell.Tab.1.right" timestamp="1594820273191">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273191" />
-    <state width="798" height="346" key="GridCell.Tab.2.bottom" timestamp="1594820273192">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.2.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273192" />
-    <state width="798" height="346" key="GridCell.Tab.2.center" timestamp="1594820273191">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.2.center/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273191" />
-    <state width="798" height="346" key="GridCell.Tab.2.left" timestamp="1594820273191">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.2.left/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273191" />
-    <state width="798" height="346" key="GridCell.Tab.2.right" timestamp="1594820273192">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.2.right/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273192" />
-    <state width="798" height="346" key="GridCell.Tab.3.bottom" timestamp="1594820273193">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.3.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273193" />
-    <state width="798" height="346" key="GridCell.Tab.3.center" timestamp="1594820273193">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.3.center/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273193" />
-    <state width="798" height="346" key="GridCell.Tab.3.left" timestamp="1594820273192">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.3.left/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273192" />
-    <state width="798" height="346" key="GridCell.Tab.3.right" timestamp="1594820273193">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="798" height="346" key="GridCell.Tab.3.right/0.23.1680.1027@0.23.1680.1027" timestamp="1594820273193" />
-    <state x="1048" y="246" key="RollbackChangesDialog" timestamp="1594781485428">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="1048" y="246" key="RollbackChangesDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1594781485428" />
-    <state x="860" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594868354582">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="860" y="276" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1594868354582" />
-    <state x="771" y="272" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1594736148467">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="771" y="272" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1680.1027@0.23.1680.1027" timestamp="1594736148467" />
-    <state x="925" y="187" width="670" height="676" key="search.everywhere.popup" timestamp="1594868638017">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="925" y="187" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1594868638017" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

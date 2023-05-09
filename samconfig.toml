@@ -1,9 +1,0 @@
-version = 0.1
-[default.deploy.parameters]
-stack_name = "slack-deployer"
-resolve_s3 = true
-s3_prefix = "slack-deployer"
-region = "us-east-1"
-capabilities = "CAPABILITY_IAM"
-parameter_overrides = "AppName=\"slack-deployer\""
-image_repositories = []
