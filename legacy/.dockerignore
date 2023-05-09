@@ -1,12 +1,12 @@
 node_modules
 npm-debug.log
-**/.dockerignore
+.dockerignore
 **/.DS_Store
 **/.git/
 **/.gitattributes
-**/.gitignore
+.gitignore
 **/.gitmodules
-**/Dockerfile
+Dockerfile
 **/Thumbs.db
 .php_cs.cache
 .phpunit.result.cache
