@@ -1,25 +1,4 @@
-const {App} = require('@slack/bolt');
-
-
-exports.loadBolt = (local) => {
-
-    let app;
-    if (local === true) {
-        app = new App({
-            token: process.env.SLACK_BOT_TOKEN,
-            signingSecret: process.env.SLACK_SIGNING_SECRET,
-        });
-    } else {
-        //loading from a lambda function
-        const awsLambdaReceiver = new AwsLambdaReceiver({
-            signingSecret: process.env.SLACK_SIGNING_SECRET,
-        });
-
-        app = new App({
-            token: process.env.SLACK_BOT_TOKEN,
-            receiver: awsLambdaReceiver,
-        });
-    }
+exports.attachSlackInterface = app => {
 
     // Listens to incoming messages that contain "hello"
     app.message('hello', async ({message, say}) => {
@@ -106,10 +85,4 @@ exports.loadBolt = (local) => {
             logger.error(error);
         }
     });
-
-
-    return app;
 }
-
-
-
