@@ -1,4 +1,4 @@
-const {App} = require('@slack/bolt');
+const {App, AwsLambdaReceiver} = require('@slack/bolt');
 const {attachSlackInterface} = require('./slack_interface')
 
 
@@ -23,6 +23,8 @@ exports.loadBoltLambda = async (event, context) => {
         token: process.env.SLACK_BOT_TOKEN,
         receiver: awsLambdaReceiver,
     });
+
+    attachSlackInterface(app)
 
     const handler = await awsLambdaReceiver.start();
     return handler(event, context);

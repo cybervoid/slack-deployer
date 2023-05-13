@@ -46,8 +46,8 @@ Resources:
       # Example function environment variables
       Environment:
         Variables:
-          TOKEN: !Ref SlackToken
-          SIGNATURE: !Ref SlackSignature
+          SLACK_BOT_TOKEN: !Ref SlackToken
+          SLACK_SIGNING_SECRET: !Ref SlackSignature
   # Function permissions grant an AWS service or another account permission to use a function
   FunctionResourcePermission:
     Type: 'AWS::Lambda::Permission'
