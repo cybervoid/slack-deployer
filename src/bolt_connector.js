@@ -14,15 +14,18 @@ exports.loadBoltLocal = () => {
 }
 
 
-exports.loadBoltLambda = () => {
+exports.loadBoltLambda = async (event, context) => {
     const awsLambdaReceiver = new AwsLambdaReceiver({
         signingSecret: process.env.SLACK_SIGNING_SECRET,
     });
 
-    app = new App({
+    const app = new App({
         token: process.env.SLACK_BOT_TOKEN,
         receiver: awsLambdaReceiver,
     });
+
+    const handler = await awsLambdaReceiver.start();
+    return handler(event, context);
 
 }
 
