@@ -1,5 +1,6 @@
-const {deploymentModal} = require('./modals/selectServiceModal')
 const {validateRequest, canDeploy} = require("./utils");
+const {renderDeploymentModal} = require('./modals/deployModal')
+const {renderSelectServiceModal} = require('./modals/selectServiceModal')
 
 exports.attachSlackInterface = (app, event) => {
 
@@ -42,7 +43,7 @@ exports.attachSlackInterface = (app, event) => {
                     // Pass a valid trigger_id within 3 seconds of receiving it
                     trigger_id: body.trigger_id,
                     // View payload
-                    view: deploymentModal()
+                    view: renderSelectServiceModal()
                 });
                 // logger.info(result);
             } catch (error) {
@@ -92,29 +93,7 @@ exports.attachSlackInterface = (app, event) => {
                 // Pass the current hash to avoid race conditions
                 hash: body.view.hash,
                 // View payload with updated blocks
-                view: {
-                    type: 'modal',
-                    // View identifier
-                    callback_id: 'view_1',
-                    title: {
-                        type: 'plain_text',
-                        text: 'Updated modal'
-                    },
-                    blocks: [
-                        {
-                            type: 'section',
-                            text: {
-                                type: 'plain_text',
-                                text: 'You updated the modal!'
-                            }
-                        },
-                        {
-                            type: 'image',
-                            image_url: 'https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif',
-                            alt_text: 'Yay! The modal was updated'
-                        }
-                    ]
-                }
+                view: renderDeploymentModal()
             });
             logger.info(result);
         } catch (error) {

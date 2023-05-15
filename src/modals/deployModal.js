@@ -1,4 +1,4 @@
-exports.renderSelectServiceModal = () => {
+exports.renderDeploymentModal = () => {
     return {
         "type": "modal",
         "title": {
@@ -19,44 +19,62 @@ exports.renderSelectServiceModal = () => {
         callback_id: 'view_deploy_callback',
         "blocks": [
             {
-                "type": "actions",
-                // "block_id": "deployment_service",
-                "elements": [{
+                "type": "input",
+                "block_id": "branch",
+                "element": {
+                    "type": "plain_text_input",
+                    "action_id": "branch-action"
+                },
+                "label": {
+                    "type": "plain_text",
+                    "text": "Branch to deploy:",
+                    "emoji": true
+                }
+            },
+            {
+                "type": "input",
+                "block_id": "deployment_environment",
+                "element": {
                     "type": "static_select",
                     "placeholder": {
                         "type": "plain_text",
-                        "text": "Select service to deploy",
+                        "text": "Select Environment",
                         "emoji": true
                     },
                     "options": [
                         {
                             "text": {
                                 "type": "plain_text",
-                                "text": "PMB",
+                                "text": "QA",
                                 "emoji": true
                             },
-                            "value": "PMB"
+                            "value": "RolloutMPDQA"
                         },
                         {
                             "text": {
                                 "type": "plain_text",
-                                "text": "MPD",
+                                "text": "Staging",
                                 "emoji": true
                             },
-                            "value": "MPD"
+                            "value": "RolloutMPDStaging"
                         },
                         {
                             "text": {
                                 "type": "plain_text",
-                                "text": "BC",
+                                "text": "Demo",
                                 "emoji": true
                             },
-                            "value": "BC"
+                            "value": "RolloutMPDDemo"
                         }
                     ],
-                    "action_id": "service-to-deploy-action",
-                }],
-            },
+                    "action_id": "environment-action"
+                },
+                "label": {
+                    "type": "plain_text",
+                    "text": "Deploy to:",
+                    "emoji": true
+                }
+            }
         ]
     }
 }
