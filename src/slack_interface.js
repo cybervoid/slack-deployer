@@ -1,7 +1,9 @@
 const {deploymentModal} = require('./modal')
-const {validateRequest} = require("./utils");
+const {validateRequest, canDeploy} = require("./utils");
 
 exports.attachSlackInterface = (app, event) => {
+
+    const failedValidationMessage = `Sorry, you are not allowed to run this deployment`
 
     // Listens to incoming messages that contain "hello"
     app.message('hello', async ({message, say}) => {
@@ -47,7 +49,7 @@ exports.attachSlackInterface = (app, event) => {
                 logger.error(error);
             }
         } else {
-            await say(`Sorry, you are not allowed to run this deployment`)
+            await say(failedValidationMessage)
         }
 
     });
@@ -56,23 +58,17 @@ exports.attachSlackInterface = (app, event) => {
         // Acknowledge the view_submission request
         await ack();
 
-        //add validate request here
-
-        console.log(`Body`, body)
-        console.log(`View`, view)
-        // Assume there's an input block with `block_1` as the block_id and `input_a`
-        const branch = view['state']['values']['branch']["branch-action"]["value"];
-        const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
         const user = body['user']['username'];
         const userId = body['user']['id'];
-        console.log(`Branch`, branch)
-        console.log(`User:`, view['state']['values']['deployment_environment']["environment-action"])
-        console.log(`environment:`, environment)
+        let msg = failedValidationMessage
 
-        // Message to send user
-        let msg = 'ok Done!';
+        //add validate request here
+        if (canDeploy(userId, user)) {
+            const branch = view['state']['values']['branch']["branch-action"]["value"];
+            const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
+            msg = `Deploying ${branch} to ${environment}`
+        }
 
-        // Message the user
         try {
             await client.chat.postMessage({
                 channel: userId,
@@ -81,6 +77,5 @@ exports.attachSlackInterface = (app, event) => {
         } catch (error) {
             logger.error(error);
         }
-
     });
 }
