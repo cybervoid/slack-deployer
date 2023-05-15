@@ -1,4 +1,4 @@
-const {deploymentModal} = require('./modals/modal')
+const {deploymentModal} = require('./modals/selectServiceModal')
 const {validateRequest, canDeploy} = require("./utils");
 
 exports.attachSlackInterface = (app, event) => {
