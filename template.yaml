@@ -18,9 +18,14 @@ Parameters:
   SlackToken:
     Description: Slack Token for Bolt
     Type: String
+  #    NoEcho: true
   SlackSignature:
     Description: SLACK SIGNING SECRET
     Type: String
+  #    NoEcho: true
+  AllowedUsers:
+    Description: Comma separated list of allowed users to deploy
+    Type: CommaDelimitedList
 
 
 Resources:
@@ -48,6 +53,7 @@ Resources:
         Variables:
           SLACK_BOT_TOKEN: !Ref SlackToken
           SLACK_SIGNING_SECRET: !Ref SlackSignature
+          AllowedUsers: !Join [ ",", !Ref AllowedUsers ]
   # Function permissions grant an AWS service or another account permission to use a function
   FunctionResourcePermission:
     Type: 'AWS::Lambda::Permission'

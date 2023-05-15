@@ -6,6 +6,8 @@ exports.validateRequest = (event) => {
     const payload = querystring.parse(decodedEventBody)
     const user = payload.user_name
     const userId = payload.user_id
-
+    const allowedUsers = process.env.AllowedUsers
+    console.log(`AllowedUsers:`, allowedUsers)
+    console.log(`First user:`, allowedUsers[0])
     return false
 }

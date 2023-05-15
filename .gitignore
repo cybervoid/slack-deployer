@@ -1,3 +1,4 @@
 node_modules/
 samconfig.toml
 .aws-sam/
+.idea/workspace.xml

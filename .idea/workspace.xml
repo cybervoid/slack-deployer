@@ -5,27 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunction/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunction/bolt_connector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunction/modal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunction/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunction/slack_interface.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunction/tests/app.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunction/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/LambdaFunctiondfe28c74DepLayer/AWS_SAM_CLI_README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/adl_nested_template.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/auto-dependency-layer/template.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/build.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.aws-sam/sync.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bolt_connector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/bolt_connector.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/app.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/app.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +76,8 @@
     <configuration name="app.test.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="app.test.js" working-dir="$PROJECT_DIR$/src/tests">
       <envs>
         <env name="SLACK_BOT_TOKEN" value="xoxb-210520988883-5238483807715-t5lPoWuEL2TR6BBodEj7HuqM" />
-        <env name="SLACK_SIGNING_SECRET" value="bdf875621bd9d35e3f9a357d347a8ce2\" />
+        <env name="SLACK_SIGNING_SECRET" value="bdf875621bd9d35e3f9a357d347a8ce2" />
+        <env name="body" value="dG9rZW49QVhNOGdxampKdTVITXBvMjdCZ1F2ZGJ5JnRlYW1faWQ9VDY2RkFWMlJaJnRlYW1fZG9tYWluPXJlY3RhbmdsZWhlYWx0aCZjaGFubmVsX2lkPUNQSDVaTDk0MCZjaGFubmVsX25hbWU9bWJtJnVzZXJfaWQ9VUpXM0g3WjZGJnVzZXJfbmFtZT1yZ2lsJmNvbW1hbmQ9JTJGbm9tYnJlJnRleHQ9JmFwaV9hcHBfaWQ9QTA1NlRWQ1EwQjAmaXNfZW50ZXJwcmlzZV9pbnN0YWxsPWZhbHNlJnJlc3BvbnNlX3VybD1odHRwcyUzQSUyRiUyRmhvb2tzLnNsYWNrLmNvbSUyRmNvbW1hbmRzJTJGVDY2RkFWMlJaJTJGNTI1MzMyNTEzODY0NiUyRkNoaktuRWNIWTMweFdxNjRicldmbDlWaCZ0cmlnZ2VyX2lkPTUyNzI1NzAzNzAzODUuMjEwNTIwOTg4ODgzLmZiZjRhMTQ4MTJmOTI3NDA1Y2MxMzNhOTE2OTA0NDc5" />
       </envs>
       <method v="2" />
     </configuration>
@@ -303,7 +288,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683963301247</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="added deploy check">
+      <created>1684112429447</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1684112429447</updated>
+    </task>
+    <task id="LOCAL-00027" summary="added rejection teest">
+      <created>1684116426945</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1684116426945</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +343,9 @@
     <MESSAGE value="added 2 triggers so I can test locally as well" />
     <MESSAGE value="added testing module" />
     <MESSAGE value="extracted the modal to its own class to make it more readable" />
-    <option name="LAST_COMMIT_MESSAGE" value="extracted the modal to its own class to make it more readable" />
+    <MESSAGE value="added deploy check" />
+    <MESSAGE value="added rejection teest" />
+    <option name="LAST_COMMIT_MESSAGE" value="added rejection teest" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -363,7 +364,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/utils.js</url>
-          <line>9</line>
+          <line>11</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>

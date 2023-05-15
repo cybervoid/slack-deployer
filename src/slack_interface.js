@@ -29,26 +29,26 @@ exports.attachSlackInterface = (app, event) => {
     });
 
 // Listen for a slash command invocation
-    app.command('/deploy', async ({ack, body, client, logger}) => {
+    app.command('/deploy', async ({ack, body, client, logger, say}) => {
         // Acknowledge the command request
         await ack();
 
-        // if (validateRequest(event)) {
-        try {
-            // Call views.open with the built-in client
-            const result = await client.views.open({
-                // Pass a valid trigger_id within 3 seconds of receiving it
-                trigger_id: body.trigger_id,
-                // View payload
-                view: deploymentModal()
-            });
-            logger.info(result);
-        } catch (error) {
-            logger.error(error);
+        if (validateRequest(event)) {
+            try {
+                // Call views.open with the built-in client
+                const result = await client.views.open({
+                    // Pass a valid trigger_id within 3 seconds of receiving it
+                    trigger_id: body.trigger_id,
+                    // View payload
+                    view: deploymentModal()
+                });
+                logger.info(result);
+            } catch (error) {
+                logger.error(error);
+            }
+        } else {
+            await say(`Sorry, you are not allowed to run this deployment`)
         }
-        // } else {
-        //     await say(`access denied`)
-        // }
 
     });
 
