@@ -1,6 +1,7 @@
 const {deploymentModal} = require('./modal')
+const {validateRequest} = require("./utils");
 
-exports.attachSlackInterface = app => {
+exports.attachSlackInterface = (app, event) => {
 
     // Listens to incoming messages that contain "hello"
     app.message('hello', async ({message, say}) => {
@@ -32,6 +33,7 @@ exports.attachSlackInterface = app => {
         // Acknowledge the command request
         await ack();
 
+        // if (validateRequest(event)) {
         try {
             // Call views.open with the built-in client
             const result = await client.views.open({
@@ -44,23 +46,33 @@ exports.attachSlackInterface = app => {
         } catch (error) {
             logger.error(error);
         }
+        // } else {
+        //     await say(`access denied`)
+        // }
+
     });
 
-    app.command('/nombre', async ({ack, body, client, logger}) => {
+    app.command('/nombre', async ({ack, body, client, logger, say}) => {
         // Acknowledge the command request
         await ack();
 
-        try {
-            // Call views.open with the built-in client
-            const result = await client.views.open({
-                // Pass a valid trigger_id within 3 seconds of receiving it
-                trigger_id: body.trigger_id,
-                // View payload
-                view: deploymentModal()
-            });
-            logger.info(result);
-        } catch (error) {
-            logger.error(error);
+        if (validateRequest(event) === true) {
+            try {
+                // Call views.open with the built-in client
+                const result = await client.views.open({
+                    // Pass a valid trigger_id within 3 seconds of receiving it
+                    trigger_id: body.trigger_id,
+                    // View payload
+                    view: deploymentModal()
+                });
+                logger.info(result);
+            } catch (error) {
+                logger.error(error);
+            }
+
+        } else {
+            await say(`dasda`)
         }
+
     });
 }
