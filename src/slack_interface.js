@@ -52,11 +52,11 @@ exports.attachSlackInterface = (app, event) => {
 
     });
 
-    app.view('view_deploy_callback', async ({ack, body, view, client, logger, say}) => {
+    app.view('view_deploy_callback', async ({ack, body, view, client, logger}) => {
         // Acknowledge the view_submission request
         await ack();
 
-        // Do whatever you want with the input data - here we're saving it to a DB then sending the user a verification of their submission
+        //add validate request here
 
         console.log(`Body`, body)
         console.log(`View`, view)
@@ -71,41 +71,15 @@ exports.attachSlackInterface = (app, event) => {
 
         // Message to send user
         let msg = 'ok Done!';
-        // Save to DB
 
         // Message the user
         try {
-            await say(`on route`)
-            // await client.chat.postMessage({
-            //     // channel: user,
-            //     text: msg
-            // });
+            await client.chat.postMessage({
+                channel: userId,
+                text: msg
+            });
         } catch (error) {
             logger.error(error);
-        }
-
-    });
-
-    app.command('/nombre', async ({ack, body, client, logger, say}) => {
-        // Acknowledge the command request
-        await ack();
-
-        if (validateRequest(event) === true) {
-            try {
-                // Call views.open with the built-in client
-                const result = await client.views.open({
-                    // Pass a valid trigger_id within 3 seconds of receiving it
-                    trigger_id: body.trigger_id,
-                    // View payload
-                    view: deploymentModal()
-                });
-                logger.info(result);
-            } catch (error) {
-                logger.error(error);
-            }
-
-        } else {
-            await say(`Sorry, you are not allowed to run this deployment`)
         }
 
     });
