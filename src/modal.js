@@ -16,12 +16,14 @@ exports.deploymentModal = () => {
             "text": "Cancel",
             "emoji": true
         },
+        callback_id: 'view_deploy_callback',
         "blocks": [
             {
                 "type": "input",
+                "block_id": "branch",
                 "element": {
                     "type": "plain_text_input",
-                    "action_id": "plain_text_input-action"
+                    "action_id": "branch-action"
                 },
                 "label": {
                     "type": "plain_text",
@@ -31,6 +33,7 @@ exports.deploymentModal = () => {
             },
             {
                 "type": "input",
+                "block_id": "deployment_environment",
                 "element": {
                     "type": "static_select",
                     "placeholder": {
@@ -45,7 +48,7 @@ exports.deploymentModal = () => {
                                 "text": "QA",
                                 "emoji": true
                             },
-                            "value": "value-0"
+                            "value": "RolloutMPDQA"
                         },
                         {
                             "text": {
@@ -53,7 +56,7 @@ exports.deploymentModal = () => {
                                 "text": "Staging",
                                 "emoji": true
                             },
-                            "value": "value-1"
+                            "value": "RolloutMPDStaging"
                         },
                         {
                             "text": {
@@ -61,10 +64,10 @@ exports.deploymentModal = () => {
                                 "text": "Demo",
                                 "emoji": true
                             },
-                            "value": "value-2"
+                            "value": "RolloutMPDDemo"
                         }
                     ],
-                    "action_id": "static_select-action"
+                    "action_id": "environment-action"
                 },
                 "label": {
                     "type": "plain_text",
