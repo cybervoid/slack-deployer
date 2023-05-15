@@ -71,7 +71,7 @@ exports.attachSlackInterface = (app, event) => {
             }
 
         } else {
-            await say(`dasda`)
+            await say(`Sorry, you are not allowed to run this deployment`)
         }
 
     });

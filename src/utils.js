@@ -7,5 +7,5 @@ exports.validateRequest = (event) => {
     const user = payload.user_name
     const userId = payload.user_id
 
-    return true
+    return false
 }

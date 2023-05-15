@@ -1,3 +1,10 @@
-const {handler} = require("../app")
+const {handler} = require("../app");
 
-handler()
+(async () => {
+
+    let event = {}
+    event.body = process.env.body
+    await handler(event)
+
+    console.log('⚡️ Bolt app is running!');
+})();
