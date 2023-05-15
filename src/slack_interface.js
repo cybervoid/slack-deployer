@@ -4,6 +4,7 @@ const {validateRequest, canDeploy} = require("./utils");
 exports.attachSlackInterface = (app, event) => {
 
     const failedValidationMessage = `Sorry, you are not allowed to run this deployment`
+    console.log(`Request received`, event.body.isBase64Encoded === true ? Buffer.from(event.body, "base64").toString('utf-8') : event.body)
 
     // Listens to incoming messages that contain "hello"
     app.message('hello', async ({message, say}) => {
@@ -30,7 +31,6 @@ exports.attachSlackInterface = (app, event) => {
         });
     });
 
-// Listen for a slash command invocation
     app.command('/deploy', async ({ack, body, client, logger, say}) => {
         // Acknowledge the command request
         await ack();
@@ -74,6 +74,49 @@ exports.attachSlackInterface = (app, event) => {
                 channel: userId,
                 text: msg
             });
+        } catch (error) {
+            logger.error(error);
+        }
+    });
+
+    app.action('service-to-deploy-action', async ({ack, body, client, logger}) => {
+        // Acknowledge the button request
+        await ack();
+
+        console.log(`service selected`, body)
+        try {
+            // Call views.update with the built-in client
+            const result = await client.views.update({
+                // Pass the view_id
+                view_id: body.view.id,
+                // Pass the current hash to avoid race conditions
+                hash: body.view.hash,
+                // View payload with updated blocks
+                view: {
+                    type: 'modal',
+                    // View identifier
+                    callback_id: 'view_1',
+                    title: {
+                        type: 'plain_text',
+                        text: 'Updated modal'
+                    },
+                    blocks: [
+                        {
+                            type: 'section',
+                            text: {
+                                type: 'plain_text',
+                                text: 'You updated the modal!'
+                            }
+                        },
+                        {
+                            type: 'image',
+                            image_url: 'https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif',
+                            alt_text: 'Yay! The modal was updated'
+                        }
+                    ]
+                }
+            });
+            logger.info(result);
         } catch (error) {
             logger.error(error);
         }
