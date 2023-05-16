@@ -32,8 +32,18 @@ exports.getServiceDeployments = service => {
         )
     })
 
-    console.log(`Result of res is`, res)
     return res
+}
+
+exports.deploy = async projectName => {
+
+    try {
+//
+
+    } catch (err) {
+        console.log(`Error calling codeBuild`, err)
+    }
+
 }
 
 exports.canDeploy = canDeploy

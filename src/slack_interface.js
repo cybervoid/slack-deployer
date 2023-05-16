@@ -1,4 +1,4 @@
-const {validateRequest, canDeploy, getServiceDeployments} = require("./utils");
+const {validateRequest, canDeploy, getServiceDeployments, deploy} = require("./deployer");
 const {renderDeploymentModal} = require('./modals/deployModal')
 const {renderSelectServiceModal} = require('./modals/selectServiceModal')
 
@@ -66,8 +66,13 @@ exports.attachSlackInterface = (app, event) => {
         if (canDeploy(userId, user)) {
             const branch = view['state']['values']['branch']["branch-action"]["value"];
             const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
+            console.log(`Raw`, view['state']['values'])
+            console.log(`Branch`, branch)
+            console.log(`Environment`, environment)
+            const kk = deploy(environment)
             msg = `Deploying ${branch} to ${environment}`
         }
+
 
         try {
             await client.chat.postMessage({

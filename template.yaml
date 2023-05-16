@@ -29,6 +29,13 @@ Parameters:
   SupportedApps:
     Type: CommaDelimitedList
     Description: JSON object of supported apps with codebuild scripts names
+  CodeBuildUser:
+    Type: String
+  CodeBuildKey:
+    Type: String
+  CodeBuildSecret:
+    Type: String
+
 
 
 Resources:
@@ -58,6 +65,9 @@ Resources:
           SLACK_SIGNING_SECRET: !Ref SlackSignature
           AllowedUsers: !Join [ ",", !Ref AllowedUsers ]
           SupportedApps: !Join [ ",", !Ref SupportedApps ]
+          CODEBUILD_USER: !Ref CodeBuildUser
+          CODEBUILD_KEY: !Ref CodeBuildKey
+          CODEBUILD_SECRET: !Ref CodeBuildSecret
   # Function permissions grant an AWS service or another account permission to use a function
   FunctionResourcePermission:
     Type: 'AWS::Lambda::Permission'
