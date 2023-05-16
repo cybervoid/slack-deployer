@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/deployer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legacy/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legacy/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/legacy/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,6 +75,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/modals" />
       <recent name="$PROJECT_DIR$/legacy" />
     </key>
@@ -122,7 +122,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="3142000" />
+      <workItem from="1684259062318" duration="3576000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -404,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684201755780</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="prepared a deployment flow">
+      <created>1684267696281</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1684267696281</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +432,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="- added health check endpoint" />
     <MESSAGE value="- working deployment" />
     <MESSAGE value="added new template.yaml for aws sam" />
     <MESSAGE value="added bolt" />
@@ -450,7 +456,8 @@
     <MESSAGE value="added a get service function that will get the dropdown content of the second step" />
     <MESSAGE value="closed the loop for to pass data from the first model to the second" />
     <MESSAGE value="removed submit btn from the first modal" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed submit btn from the first modal" />
+    <MESSAGE value="prepared a deployment flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="prepared a deployment flow" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -458,7 +465,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/legacy/github.js</url>
+          <url>file://$PROJECT_DIR$/src/github.js</url>
           <line>43</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>

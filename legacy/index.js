@@ -1,6 +1,6 @@
 require('dotenv').config();
 const {App, ExpressReceiver} = require('@slack/bolt');
-const github = require('./github');
+const github = require('../src/github');
 
 // Initializes your app with your bot token and signing secret
 const receiver = new ExpressReceiver({signingSecret: process.env.SLACK_SIGNING_SECRET});
