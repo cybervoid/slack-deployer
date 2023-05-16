@@ -82,7 +82,6 @@ exports.attachSlackInterface = (app, event) => {
     app.action('service-to-deploy-action', async ({ack, body, client, logger}) => {
         await ack();
 
-        console.log(`Body`, body)
         const serviceToDeploy = body.actions[0].selected_option.value
 
         try {
