@@ -1,4 +1,4 @@
-exports.renderDeploymentModal = () => {
+exports.renderDeploymentModal = deployments => {
     return {
         "type": "modal",
         "title": {
@@ -41,32 +41,7 @@ exports.renderDeploymentModal = () => {
                         "text": "Select Environment",
                         "emoji": true
                     },
-                    "options": [
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "QA",
-                                "emoji": true
-                            },
-                            "value": "RolloutMPDQA"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Staging",
-                                "emoji": true
-                            },
-                            "value": "RolloutMPDStaging"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Demo",
-                                "emoji": true
-                            },
-                            "value": "RolloutMPDDemo"
-                        }
-                    ],
+                    "options": deployments,
                     "action_id": "environment-action"
                 },
                 "label": {
@@ -78,3 +53,5 @@ exports.renderDeploymentModal = () => {
         ]
     }
 }
+
+

@@ -15,10 +15,25 @@ exports.validateRequest = (event) => {
     return canDeploy(payload.user_id, payload.user_name)
 }
 
-exports.getService = service => {
+exports.getServiceDeployments = service => {
 
     const supportedApps = JSON.parse(process.env.SupportedApps)
-    return supportedApps[service]
+    const dropdown = supportedApps[service]
+    let res = []
+    dropdown.forEach(currentElement => {
+        res.push({
+                "text": {
+                    "type": "plain_text",
+                    "text": currentElement.name,
+                    "emoji": true
+                },
+                "value": currentElement.value
+            },
+        )
+    })
+
+    console.log(`Result of res is`, res)
+    return res
 }
 
 exports.canDeploy = canDeploy

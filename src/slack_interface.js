@@ -1,4 +1,4 @@
-const {validateRequest, canDeploy, getService} = require("./utils");
+const {validateRequest, canDeploy, getServiceDeployments} = require("./utils");
 const {renderDeploymentModal} = require('./modals/deployModal')
 const {renderSelectServiceModal} = require('./modals/selectServiceModal')
 
@@ -85,7 +85,6 @@ exports.attachSlackInterface = (app, event) => {
         console.log(`Body`, body)
         const serviceToDeploy = body.actions[0].selected_option.value
 
-        console.log(`service selected`, getService(serviceToDeploy))
         try {
             // Call views.update with the built-in client
             const result = await client.views.update({
@@ -94,7 +93,7 @@ exports.attachSlackInterface = (app, event) => {
                 // Pass the current hash to avoid race conditions
                 hash: body.view.hash,
                 // View payload with updated blocks
-                view: renderDeploymentModal()
+                view: renderDeploymentModal(getServiceDeployments(serviceToDeploy))
             });
             logger.info(result);
         } catch (error) {
