@@ -38,7 +38,6 @@ exports.attachSlackInterface = (app, event) => {
 
         if (validateRequest(event)) {
             try {
-                // Call views.open with the built-in client
                 const result = await client.views.open({
                     // Pass a valid trigger_id within 3 seconds of receiving it
                     trigger_id: body.trigger_id,
@@ -81,10 +80,12 @@ exports.attachSlackInterface = (app, event) => {
     });
 
     app.action('service-to-deploy-action', async ({ack, body, client, logger}) => {
-        // Acknowledge the button request
         await ack();
 
-        console.log(`service selected`, body)
+        console.log(`Body`, body)
+        const serviceToDeploy = body.actions[0].selected_option.value
+
+        console.log(`service selected`, serviceToDeploy)
         try {
             // Call views.update with the built-in client
             const result = await client.views.update({
