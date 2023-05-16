@@ -24,8 +24,11 @@ Parameters:
     Type: String
   #    NoEcho: true
   AllowedUsers:
-    Description: Comma separated list of allowed users to deploy
+    Description: JSON object containing allowed users to deploy
     Type: CommaDelimitedList
+  SupportedApps:
+    Type: CommaDelimitedList
+    Description: JSON object of supported apps with codebuild scripts names
 
 
 Resources:
@@ -54,6 +57,7 @@ Resources:
           SLACK_BOT_TOKEN: !Ref SlackToken
           SLACK_SIGNING_SECRET: !Ref SlackSignature
           AllowedUsers: !Join [ ",", !Ref AllowedUsers ]
+          SupportedApps: !Join [ ",", !Ref SupportedApps ]
   # Function permissions grant an AWS service or another account permission to use a function
   FunctionResourcePermission:
     Type: 'AWS::Lambda::Permission'

@@ -15,5 +15,11 @@ exports.validateRequest = (event) => {
     return canDeploy(payload.user_id, payload.user_name)
 }
 
+exports.getService = service => {
+
+    const supportedApps = JSON.parse(process.env.SupportedApps)
+    return supportedApps[service]
+}
+
 exports.canDeploy = canDeploy
 

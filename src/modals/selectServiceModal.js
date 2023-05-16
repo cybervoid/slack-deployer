@@ -35,7 +35,7 @@ exports.renderSelectServiceModal = () => {
                                 "text": "PMB",
                                 "emoji": true
                             },
-                            "value": "PMB"
+                            "value": "pmb"
                         },
                         {
                             "text": {
@@ -43,7 +43,7 @@ exports.renderSelectServiceModal = () => {
                                 "text": "MPD",
                                 "emoji": true
                             },
-                            "value": "MPD"
+                            "value": "mpd"
                         },
                         {
                             "text": {
@@ -51,7 +51,7 @@ exports.renderSelectServiceModal = () => {
                                 "text": "BC",
                                 "emoji": true
                             },
-                            "value": "BC"
+                            "value": "bc"
                         }
                     ],
                     "action_id": "service-to-deploy-action",
