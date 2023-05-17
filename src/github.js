@@ -16,10 +16,10 @@ module.exports.runDeployment = async (environment, branch, service) => {
 
     const workflows = await listWorkFlows();
 
-    let msg = `Fetching workflow list for selected repo ... \n`
+    let msg = `Deployment request received \n Fetching workflow list for selected repo ... \n`
     console.log(msg)
     if (workflows.workflows) {
-        const workflowParam = serviceInfo["workflowName"]
+        const workflowParam = getServiceInfo()[service]["workflowName"]
         const regExp = RegExp(workflowParam)
 
         let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));

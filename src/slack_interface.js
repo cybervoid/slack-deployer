@@ -66,28 +66,30 @@ exports.attachSlackInterface = (app, event) => {
         await ack();
         const user = body['user']['username'];
         const userId = body['user']['id'];
-        let msg = failedValidationMessage
+        const branch = view['state']['values']["deployment_branches"]["branch-action"]["selected_option"]["value"];
+
+        const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
+        const service = view.private_metadata
+        let msg = `Error calling github action workflow for ${environment} while trying to deploy ${branch} to ${service}`
 
         try {
             //add validate request here
             if (canDeploy(userId, user)) {
-                const branch = view['state']['values']["deployment_branches"]["branch-action"]["selected_option"]["value"];
-                const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
-                const service = view.private_metadata
-
-                msg = `Deploying ${branch} to ${environment}`
                 console.log(msg)
-                const kk = await runDeployment(environment, branch, service)
-                console.log(`Debug Data`, kk)
+                msg = await runDeployment(environment, branch, service).catch(err => console.log(msg, err))
+                console.log(`Debug Data`, msg)
+            } else {
+                msg = failedValidationMessage
             }
-
-            await client.chat.postMessage({
-                channel: userId,
-                text: kk
-            });
         } catch (error) {
             logger.error(error);
         }
+
+        await client.chat.postMessage({
+            channel: userId,
+            text: msg
+        });
+
     });
 
     /**
