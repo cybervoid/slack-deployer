@@ -9,17 +9,13 @@ axios.defaults.baseURL = `https://api.github.com/repos/`;
 
 module.exports.runDeployment = async (environment, branch, service) => {
 
-    const serviceURI = getServiceInfo(service)
-    axios.defaults.baseURL += `${serviceURI}/`;
-
-    console.log(`Calling workflow at: `, axios.defaults.baseURL)
-
     const workflows = await listWorkFlows();
 
     let msg = `Deployment request received \n Fetching workflow list for selected repo ... \n`
     console.log(msg)
     if (workflows.workflows) {
         const workflowParam = getServiceInfo()[service]["workflowName"]
+        console.log(`Delete me`, workflowParam)
         const regExp = RegExp(workflowParam)
 
         let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
