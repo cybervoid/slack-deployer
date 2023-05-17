@@ -4,13 +4,16 @@ axios.defaults.headers.common = {
     "Content-Type": "application/json"
 }
 
-module.exports.runDeployment = async (environment, branch) => {
+module.exports.runDeployment = async (environment, branch, service) => {
 
     let res = {
         'success': false
     };
 
-    axios.defaults.baseURL = `https://api.github.com/repos/${process.env.GitHubOrganization}/mpd/`;
+    const serviceInfo = JSON.parse(process.env.SupportedApps)
+    axios.defaults.baseURL = `https://api.github.com/repos/${serviceInfo}/`;
+
+    console.log(`Calling workflow at: `, serviceInfo[service]["url"])
 
     res['message'] = "";
     const workflows = await listWorkFlows();

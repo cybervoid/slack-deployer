@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/deployer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/deployer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modals/deployModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/deployModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modals/selectServiceModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/selectServiceModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="">
@@ -34,6 +32,15 @@
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="home" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/github.js">
+      <ranges>
+        <range start1="6" end1="7" start2="6" end2="7" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="12" end1="13" start2="12" end2="16" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="24" end1="29" start2="27" end2="32" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -123,7 +130,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="15566000" />
+      <workItem from="1684259062318" duration="17977000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -440,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684290343013</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="expanded the code to account for the new json payload">
+      <created>1684292146691</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1684292146691</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,7 +475,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added bolt.js to the mix" />
     <MESSAGE value="refactored bolt for better org" />
     <MESSAGE value="organized the logic better with the recognized commands on their own module" />
     <MESSAGE value="added 2 triggers so I can test locally as well" />
@@ -486,7 +499,8 @@
     <MESSAGE value="added github library" />
     <MESSAGE value="removed legacy code" />
     <MESSAGE value="added some comments to better navigate the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some comments to better navigate the code" />
+    <MESSAGE value="expanded the code to account for the new json payload" />
+    <option name="LAST_COMMIT_MESSAGE" value="expanded the code to account for the new json payload" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

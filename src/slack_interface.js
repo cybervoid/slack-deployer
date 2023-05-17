@@ -66,26 +66,23 @@ exports.attachSlackInterface = (app, event) => {
         const user = body['user']['username'];
         const userId = body['user']['id'];
         let msg = failedValidationMessage
-        console.log(`Request to deploy received`)
 
         try {
             //add validate request here
             if (canDeploy(userId, user)) {
                 const branch = view['state']['values']['branch']["branch-action"]["value"];
                 const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
-                console.log(`Raw`, view['state']['values'])
-                console.log(`Branch`, branch)
-                console.log(`Environment`, environment)
+                const service = view.private_metadata
 
                 msg = `Deploying ${branch} to ${environment}`
                 console.log(msg)
-                const kk = await runDeployment(environment, branch)
+                const kk = await runDeployment(environment, branch, service)
                 console.log(`Debug Data`, kk)
             }
 
             await client.chat.postMessage({
                 channel: userId,
-                text: msg
+                text: kk
             });
         } catch (error) {
             logger.error(error);
