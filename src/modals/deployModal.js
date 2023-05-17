@@ -1,6 +1,7 @@
-exports.renderDeploymentModal = deployments => {
+exports.renderDeploymentModal = (workflows, service) => {
     return {
         "type": "modal",
+        "private_metadata": service,
         "title": {
             "type": "plain_text",
             "text": "Deployer",
@@ -41,7 +42,7 @@ exports.renderDeploymentModal = deployments => {
                         "text": "Select Environment",
                         "emoji": true
                     },
-                    "options": deployments,
+                    "options": workflows,
                     "action_id": "environment-action"
                 },
                 "label": {

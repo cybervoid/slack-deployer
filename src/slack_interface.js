@@ -1,4 +1,4 @@
-const {validateRequest, canDeploy, getServiceDeployments, deploy} = require("./deployer");
+const {validateRequest, canDeploy, getServiceWorkflows} = require("./deployer");
 const {renderDeploymentModal} = require('./modals/deployModal')
 const {renderSelectServiceModal} = require('./modals/selectServiceModal')
 const {runDeployment} = require("./github")
@@ -102,13 +102,15 @@ exports.attachSlackInterface = (app, event) => {
 
         try {
             // Call views.update with the built-in client
+            const workflows = getServiceWorkflows(serviceToDeploy)
+
             const result = await client.views.update({
                 // Pass the view_id
                 view_id: body.view.id,
                 // Pass the current hash to avoid race conditions
                 hash: body.view.hash,
                 // View payload with updated blocks
-                view: renderDeploymentModal(getServiceDeployments(serviceToDeploy))
+                view: renderDeploymentModal(workflows, serviceToDeploy)
             });
         } catch (error) {
             logger.error(error);

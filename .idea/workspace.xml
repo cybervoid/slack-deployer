@@ -6,11 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bolt_connector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/bolt_connector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/deployer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/deployer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modals/deployModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/deployModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modals/selectServiceModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/selectServiceModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
-    <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="" />
+    <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +123,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="13767000" />
+      <workItem from="1684259062318" duration="15566000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -430,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684289088774</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="added some comments to better navigate the code">
+      <created>1684290343013</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1684290343013</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +461,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="exclude samconfig" />
     <MESSAGE value="added bolt.js to the mix" />
     <MESSAGE value="refactored bolt for better org" />
     <MESSAGE value="organized the logic better with the recognized commands on their own module" />
@@ -476,7 +485,8 @@
     <MESSAGE value="added axios to call github" />
     <MESSAGE value="added github library" />
     <MESSAGE value="removed legacy code" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed legacy code" />
+    <MESSAGE value="added some comments to better navigate the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some comments to better navigate the code" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

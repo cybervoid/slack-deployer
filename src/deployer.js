@@ -15,12 +15,19 @@ exports.validateRequest = (event) => {
     return canDeploy(payload.user_id, payload.user_name)
 }
 
-exports.getServiceDeployments = service => {
+/**
+ * Organizes the dropdown to be shown with the list of apps/services
+ *
+ * @param service
+ * @returns {*}
+ */
+exports.getServiceWorkflows = service => {
 
     const supportedApps = JSON.parse(process.env.SupportedApps)
-    const dropdown = supportedApps[service]
-    let res = []
-    dropdown.forEach(currentElement => {
+    const serviceInfo = supportedApps[service][["workflows"]]
+
+    const res = []
+    serviceInfo.forEach(currentElement => {
         res.push({
                 "text": {
                     "type": "plain_text",

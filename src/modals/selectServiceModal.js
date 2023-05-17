@@ -14,7 +14,6 @@ exports.renderSelectServiceModal = () => {
         "blocks": [
             {
                 "type": "actions",
-                // "block_id": "deployment_service",
                 "elements": [{
                     "type": "static_select",
                     "placeholder": {
