@@ -78,18 +78,17 @@ function renderModalBranchList(branchList) {
     const res = []
     branchList.forEach(currentElement => {
         console.log(`curr element`, currentElement)
-        // res.push({
-        //         "text": {
-        //             "type": "plain_text",
-        //             "text": currentElement.name,
-        //             "emoji": true
-        //         },
-        //         "value": currentElement.name
-        //     })
+        res.push({
+            "text": {
+                "type": "plain_text",
+                "text": currentElement.name,
+                "emoji": true
+            },
+            "value": currentElement.name
+        })
     })
 
-    // console.log(`Rendering branches for modal`, res)
-    return {}
+    return res
 }
 
 

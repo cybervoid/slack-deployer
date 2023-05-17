@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modals/deployModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/deployModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
@@ -33,20 +32,6 @@
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="home" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/github.js">
-      <ranges>
-        <range start1="26" end1="32" start2="26" end2="33" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
-        <range start1="46" end1="46" start2="47" end2="48" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="47" end1="47" start2="49" end2="53" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="48" end1="50" start2="54" end2="54" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="57" end1="61" start2="61" end2="62" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="64" end1="77" start2="65" end2="66" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="78" end1="79" start2="67" end2="68" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="81" end1="82" start2="70" end2="71" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -137,14 +122,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="25498000" />
-    </task>
-    <task id="LOCAL-00001" summary="- reads command from slack with instructions">
-      <created>1594522334204</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1594522334204</updated>
+      <workItem from="1684259062318" duration="26244000" />
     </task>
     <task id="LOCAL-00002" summary="- organized entry point function">
       <created>1594523522270</created>
@@ -482,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684300381523</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="added code to the branches logic">
+      <created>1684302865150</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1684302865151</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +488,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added testing module" />
     <MESSAGE value="extracted the modal to its own class to make it more readable" />
     <MESSAGE value="added deploy check" />
     <MESSAGE value="added rejection teest" />
@@ -528,7 +512,8 @@
     <MESSAGE value="fetched the repo url from the service JSON" />
     <MESSAGE value="added some logging" />
     <MESSAGE value="added a call to get a fresh list of branches" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a call to get a fresh list of branches" />
+    <MESSAGE value="added code to the branches logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="added code to the branches logic" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

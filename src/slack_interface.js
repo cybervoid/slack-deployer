@@ -103,7 +103,7 @@ exports.attachSlackInterface = (app, event) => {
             console.log(`Service selected by the user`, serviceToDeploy)
 
             const workflows = getServiceWorkflows(serviceToDeploy)
-            const branches = await getBranches(serviceToDeploy)
+            const getBranchRes = await getBranches(serviceToDeploy)
 
             const result = await client.views.update({
                 // Pass the view_id
@@ -111,7 +111,7 @@ exports.attachSlackInterface = (app, event) => {
                 // Pass the current hash to avoid race conditions
                 hash: body.view.hash,
                 // View payload with updated blocks
-                view: renderDeploymentModal(workflows, serviceToDeploy, branches)
+                view: renderDeploymentModal(workflows, serviceToDeploy, getBranchRes.branches)
             });
         } catch (error) {
             logger.error(error);
