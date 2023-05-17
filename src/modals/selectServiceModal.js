@@ -1,6 +1,7 @@
-exports.renderSelectServiceModal = () => {
+exports.renderSelectServiceModal = respondTo => {
     return {
         "type": "modal",
+        "private_metadata": respondTo,
         "title": {
             "type": "plain_text",
             "text": "Deployer",

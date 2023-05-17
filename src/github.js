@@ -48,7 +48,9 @@ exports.getBranches = async service => {
     const serviceURI = getServiceInfo(service)
 
     console.log(`Getting branches at`, serviceURI)
-    axios.defaults.baseURL += `${serviceURI}/`;
+    if (axios.defaults.baseURL.includes(serviceURI) !== true) {
+        axios.defaults.baseURL += `${serviceURI}/`
+    }
 
     try {
         const reqRes = await axios.get('branches').catch(err => {

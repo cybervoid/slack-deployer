@@ -1,7 +1,7 @@
-exports.renderDeploymentModal = (workflows, service, branches) => {
+exports.renderDeploymentModal = (workflows, metadata, branches) => {
     return {
         "type": "modal",
-        "private_metadata": service,
+        "private_metadata": metadata,
         "title": {
             "type": "plain_text",
             "text": "Deployer",

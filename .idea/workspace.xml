@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modals/deployModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/deployModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modals/selectServiceModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/selectServiceModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="" />
@@ -120,14 +123,8 @@
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
       <workItem from="1684259062318" duration="29216000" />
-      <workItem from="1684327275227" duration="1918000" />
-    </task>
-    <task id="LOCAL-00008" summary="- improve error logging to slack">
-      <created>1594761914097</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1594761914097</updated>
+      <workItem from="1684327275227" duration="1950000" />
+      <workItem from="1684340864055" duration="4508000" />
     </task>
     <task id="LOCAL-00009" summary="- improve error logging to slack">
       <created>1594762041286</created>
@@ -465,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684335379339</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="tweaked the logic to better report the status of a deployment">
+      <created>1684339601662</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1684339601662</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

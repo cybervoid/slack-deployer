@@ -47,7 +47,7 @@ exports.attachSlackInterface = (app, event) => {
                 const result = await client.views.open({
                     trigger_id: body.trigger_id,
                     // View payload
-                    view: renderSelectServiceModal()
+                    view: renderSelectServiceModal(body.channel_id !== undefined ? body.channel_id : body.user_id)
                 });
             } catch (error) {
                 logger.error(error);
@@ -71,9 +71,9 @@ exports.attachSlackInterface = (app, event) => {
         const userId = body['user']['id'];
         const branch = view['state']['values']["deployment_branches"]["branch-action"]["selected_option"]["value"];
         const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
-        const service = view.private_metadata
+        const metadata = JSON.parse(view.private_metadata)
 
-        let msg = `Error calling github action workflow for ${environment} while trying to deploy ${branch} to ${service}`
+        let msg = `Error calling github action workflow for \`${environment}\` while trying to deploy \`${branch}\` to \`${metadata.service}\``
 
         try {
             if (canDeploy(userId, user)) {
@@ -87,7 +87,7 @@ exports.attachSlackInterface = (app, event) => {
         }
 
         await client.chat.postMessage({
-            channel: userId,
+            channel: metadata.channel,
             text: msg
         });
 
@@ -107,6 +107,10 @@ exports.attachSlackInterface = (app, event) => {
 
             const workflows = getServiceWorkflows(serviceToDeploy)
             const getBranchRes = await getBranches(serviceToDeploy)
+            const metadata = JSON.stringify({
+                "channel": body.view.private_metadata,
+                "service": serviceToDeploy
+            })
 
             const result = await client.views.update({
                 // Pass the view_id
@@ -114,7 +118,7 @@ exports.attachSlackInterface = (app, event) => {
                 // Pass the current hash to avoid race conditions
                 hash: body.view.hash,
                 // View payload with updated blocks
-                view: renderDeploymentModal(workflows, serviceToDeploy, getBranchRes.branches)
+                view: renderDeploymentModal(workflows, metadata, getBranchRes.branches)
             });
         } catch (error) {
             logger.error(error);
