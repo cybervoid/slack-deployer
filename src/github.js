@@ -44,10 +44,13 @@ module.exports.runDeployment = async (environment, branch, service) => {
  * Get a list of branches from GitHub
  */
 exports.getBranches = async service => {
-    const errorMsg = `Error fetching branch list. More Info:`
 
-    // const serviceInfo = getServiceInfo(service)
-    // const serviceURI = serviceInfo["url"]
+    const errorMsg = `Error fetching branch list. More Info:`
+    const res = {
+        message: errorMsg,
+        branches: {}
+    }
+
     const serviceURI = getServiceInfo(service)
 
     console.log(`Getting branches at`, serviceURI)
@@ -55,31 +58,16 @@ exports.getBranches = async service => {
 
     try {
         const reqRes = await axios.get('branches').catch(err => {
-            console.log(`Error calling get branches from github`, err)
-            return {
-                message: err
-            }
+            console.log(errorMsg, err)
         })
 
         if (reqRes.status === 200) {
-            const branches = reqRes.data;
-
-            console.log(`Branches`, branches)
-            // if (branchRes) {
-            //     res = {
-            //         'success': true,
-            //         'branch': branchRes['branch'],
-            //         'server': branchRes['server'],
-            //         'message': `Listing repo branches ... \n Found requested branch \`${branchRes['branch']}\` \n`
-            //     }
-            // } else {
-            //     res['message'] = `${errorMsg} branch provided could not be found in the branch list \n`
-            // }
+            res.branches = reqRes.data;
         } else {
-            res['message'] = `${errorMsg} ${reqRes.message} \n`
+            console.log(errorMsg, reqRes)
         }
     } catch (e) {
-        res['message'] = `${errorMsg} ${e.message} \n`;
+        console.log(errorMsg, e)
     }
 
     return res

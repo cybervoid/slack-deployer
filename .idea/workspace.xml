@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/deployer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/deployer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modals/deployModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/deployModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="">
@@ -37,16 +37,14 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/github.js">
       <ranges>
-        <range start1="0" end1="0" start2="0" end2="1" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="5" end1="5" start2="6" end2="8" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="8" end1="11" start2="11" end2="13" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="19" end1="20" start2="21" end2="22" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="24" end1="30" start2="26" end2="33" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
-        <range start1="41" end1="42" start2="44" end2="45" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="43" end1="44" start2="46" end2="47" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="45" end1="48" start2="48" end2="56" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="49" end1="50" start2="57" end2="64" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="53" end1="65" start2="67" end2="78" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="26" end1="32" start2="26" end2="33" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
+        <range start1="46" end1="46" start2="47" end2="48" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="47" end1="47" start2="49" end2="53" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="48" end1="50" start2="54" end2="54" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="57" end1="61" start2="61" end2="62" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="64" end1="77" start2="65" end2="66" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="78" end1="79" start2="67" end2="68" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="81" end1="82" start2="70" end2="71" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
       </ranges>
     </file>
   </component>
@@ -139,7 +137,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="23031000" />
+      <workItem from="1684259062318" duration="25498000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -477,7 +475,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684296008944</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="added a call to get a fresh list of branches">
+      <created>1684300381523</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1684300381523</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +503,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added 2 triggers so I can test locally as well" />
     <MESSAGE value="added testing module" />
     <MESSAGE value="extracted the modal to its own class to make it more readable" />
     <MESSAGE value="added deploy check" />
@@ -523,7 +527,8 @@
     <MESSAGE value="expanded the code to account for the new json payload" />
     <MESSAGE value="fetched the repo url from the service JSON" />
     <MESSAGE value="added some logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some logging" />
+    <MESSAGE value="added a call to get a fresh list of branches" />
+    <option name="LAST_COMMIT_MESSAGE" value="added a call to get a fresh list of branches" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
