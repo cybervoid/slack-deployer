@@ -21,19 +21,6 @@ exports.renderDeploymentModal = (workflows, service, branches) => {
         "blocks": [
             {
                 "type": "input",
-                "block_id": "branch",
-                "element": {
-                    "type": "plain_text_input",
-                    "action_id": "branch-action"
-                },
-                "label": {
-                    "type": "plain_text",
-                    "text": "Branch to deploy:",
-                    "emoji": true
-                }
-            },
-            {
-                "type": "input",
                 "block_id": "deployment_branches",
                 "element": {
                     "type": "static_select",
@@ -43,7 +30,7 @@ exports.renderDeploymentModal = (workflows, service, branches) => {
                         "emoji": true
                     },
                     "options": renderModalBranchList(branches),
-                    "action_id": "environment-action"
+                    "action_id": "branch-action"
                 },
                 "label": {
                     "type": "plain_text",
@@ -77,7 +64,6 @@ exports.renderDeploymentModal = (workflows, service, branches) => {
 function renderModalBranchList(branchList) {
     const res = []
     branchList.forEach(currentElement => {
-        console.log(`curr element`, currentElement)
         res.push({
             "text": {
                 "type": "plain_text",

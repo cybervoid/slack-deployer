@@ -71,7 +71,7 @@ exports.attachSlackInterface = (app, event) => {
         try {
             //add validate request here
             if (canDeploy(userId, user)) {
-                const branch = view['state']['values']['branch']["branch-action"]["value"];
+                const branch = view['state']['values']["deployment_branches"]["branch-action"]["selected_option"]["value"];
                 const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
                 const service = view.private_metadata
 
