@@ -65,6 +65,8 @@ exports.attachSlackInterface = (app, event) => {
         // Acknowledge the view_submission request
         await ack();
 
+        console.log(`Deployment payload received`)
+
         const user = body['user']['username'];
         const userId = body['user']['id'];
         const branch = view['state']['values']["deployment_branches"]["branch-action"]["selected_option"]["value"];
@@ -75,7 +77,6 @@ exports.attachSlackInterface = (app, event) => {
 
         try {
             if (canDeploy(userId, user)) {
-                console.log(msg)
                 msg = await runDeployment(environment, branch, service).catch(err => console.log(msg, err))
                 console.log(`Debug Data`, msg)
             } else {
