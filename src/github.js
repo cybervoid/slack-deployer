@@ -1,39 +1,39 @@
 axios = require('axios');
-axios.defaults.headers.common = {'Authorization': `bearer ${process.env.GA_TOKEN}`, "Content-Type": "application/json"}
-axios.defaults.baseURL = `https://api.github.com/repos/${process.env.GA_ORGANIZATION}/${process.env.GA_PROJECT}/`;
+axios.defaults.headers.common = {
+    'Authorization': `bearer ${process.env.GitHubToken}`,
+    "Content-Type": "application/json"
+}
+axios.defaults.baseURL = `https://api.github.com/repos/${process.env.GitHubOrganization}/mpd/`;
 
-module.exports.runDeployment = async (context) => {
+module.exports.runDeployment = async (environment, branch) => {
 
     let res = {
         'success': false
     };
 
-    const params = await getCommandParameters(context);
-    res['message'] = params.message;
-    if (params.success) {
-        const workflows = await listWorkFlows();
-        res['message'] += `Fetching workflow list for selected repo ... \n`
-        if (workflows.workflows) {
-            const workflowParam = params['server'];
-            const branch = params['branch']
-            const regExp = RegExp(workflowParam);
+    res['message'] = "";
+    const workflows = await listWorkFlows();
+    res['message'] += `Fetching workflow list for selected repo ... \n`
+    if (workflows.workflows) {
+        const workflowParam = "deploy-to-k8s"
+        const regExp = RegExp(workflowParam)
 
-            let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
-            if (workFlowFile) {
-                res['message'] += `Matching workflow found as \`${workFlowFile.name}\` \n Requesting github to run workflow \`${workFlowFile.name}\` for branch \`${branch}\` \n`
-                const runRes = await runWorkflow(`${workFlowFile.name}.yml`, branch)
-                res['message'] += runRes.message
-                if (runRes.success) {
-                    res['success'] = true
-                }
-            } else {
-                res['message'] += `Could not find a workflow matching \`${workflowParam}\``
+        let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
+        if (workFlowFile) {
+            res['message'] += `Matching workflow found as \`${workFlowFile.name}\` \n Requesting github to run workflow \`${workFlowFile.name}\` for branch \`${branch}\` \n`
+            const runRes = await runWorkflow(`${workFlowFile.name}.yml`, branch, environment)
+            res['message'] += runRes.message
+            if (runRes.success) {
+                res['success'] = true
             }
         } else {
-            res['message'] += `Could not get workflow list for this repo. More info: ${workflows} \n`
+            res['message'] += `Could not find a workflow matching \`${workflowParam}\``
         }
-
+    } else {
+        res['message'] += `Could not get workflow list for this repo. More info: ${workflows} \n`
     }
+
+
     return res;
 }
 
@@ -90,7 +90,7 @@ function matchBranchName(context, branchList) {
     return res
 }
 
-async function runWorkflow(name, branch) {
+async function runWorkflow(name, branch, environment) {
     const url = `actions/workflows/${name}/dispatches`;
     const res = {
         'success': false,
@@ -98,15 +98,20 @@ async function runWorkflow(name, branch) {
     };
 
     try {
+        const workflowInput = {
+            "branch_name": branch,
+            "environment": environment
+        }
+
+        console.log(`Calling github workflow ${name} with input:`, workflowInput)
+
         const creationRes = await axios.post(url, {
             "ref": "refs/heads/develop",
-            "inputs": {
-                "branch_name": branch
-            }
+            "inputs": workflowInput
         });
         if (creationRes.status === 204) {
             res['success'] = true;
-            res['message'] = 'Deployment workflow triggered successfully'
+            res['message'] = 'Success from Github, deployment workflow triggered successfully'
         } else {
             res['message'] += `, return request status ${creationRes.status}, data: ${creationRes.data}`
         }

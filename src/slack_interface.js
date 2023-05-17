@@ -1,6 +1,7 @@
 const {validateRequest, canDeploy, getServiceDeployments, deploy} = require("./deployer");
 const {renderDeploymentModal} = require('./modals/deployModal')
 const {renderSelectServiceModal} = require('./modals/selectServiceModal')
+const {runDeployment} = require("./github")
 
 exports.attachSlackInterface = (app, event) => {
 
@@ -28,7 +29,7 @@ exports.attachSlackInterface = (app, event) => {
                     }
                 }
             ],
-            text: `Hey there <@${message.user}>!`
+            text: `Hey there <@${message.user}>`
         });
     });
 
@@ -57,24 +58,27 @@ exports.attachSlackInterface = (app, event) => {
     app.view('view_deploy_callback', async ({ack, body, view, client, logger}) => {
         // Acknowledge the view_submission request
         await ack();
-
         const user = body['user']['username'];
         const userId = body['user']['id'];
         let msg = failedValidationMessage
-
-        //add validate request here
-        if (canDeploy(userId, user)) {
-            const branch = view['state']['values']['branch']["branch-action"]["value"];
-            const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
-            console.log(`Raw`, view['state']['values'])
-            console.log(`Branch`, branch)
-            console.log(`Environment`, environment)
-            const kk = deploy(environment)
-            msg = `Deploying ${branch} to ${environment}`
-        }
-
+        console.log(`Request to deploy received`)
 
         try {
+
+            //add validate request here
+            if (canDeploy(userId, user)) {
+                const branch = view['state']['values']['branch']["branch-action"]["value"];
+                const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
+                console.log(`Raw`, view['state']['values'])
+                console.log(`Branch`, branch)
+                console.log(`Environment`, environment)
+
+                msg = `Deploying ${branch} to ${environment}`
+                console.log(msg)
+                const kk = await runDeployment(environment, branch)
+                console.log(`Debug Data`, kk)
+            }
+
             await client.chat.postMessage({
                 channel: userId,
                 text: msg

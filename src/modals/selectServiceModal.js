@@ -11,7 +11,6 @@ exports.renderSelectServiceModal = () => {
             "text": "Cancel",
             "emoji": true
         },
-        callback_id: 'view_deploy_callback',
         "blocks": [
             {
                 "type": "actions",

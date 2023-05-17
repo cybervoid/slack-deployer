@@ -31,6 +31,9 @@ Parameters:
     Description: JSON object of supported apps with codebuild scripts names
   GitHubToken:
     Type: String
+  GitHubOrganization:
+    Type: String
+    Description: "Will be used when calling github as it's usually part of the url"
 
 
 
@@ -62,6 +65,7 @@ Resources:
           AllowedUsers: !Join [ ",", !Ref AllowedUsers ]
           SupportedApps: !Join [ ",", !Ref SupportedApps ]
           GitHubToken: !Ref GitHubToken
+          GitHubOrganization: !Ref GitHubOrganization
   # Function permissions grant an AWS service or another account permission to use a function
   FunctionResourcePermission:
     Type: 'AWS::Lambda::Permission'
