@@ -20,12 +20,10 @@ module.exports.runDeployment = async (environment, branch, service) => {
 
         let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
         if (workFlowFile) {
-            res['message'] += `Matching workflow found as \`${workFlowFile.name}\` \n Requesting github to run workflow \`${workFlowFile.name}\` for branch \`${branch}\` \n`
-            const runRes = await runWorkflow(`${workFlowFile.name}.yml`, branch, environment)
-            res['message'] += runRes.message
-            if (runRes.success) {
-                res['success'] = true
-            }
+            msg += `Deployment workflow found: \`${workFlowFile.name}\` \n Requesting github to run it for branch \`${branch}\` \n`
+            console.log(msg)
+            msg += await runWorkflow(`${workFlowFile.name}.yml`, branch, environment)
+            console.log(msg)
         } else {
             msg += `Could not find a workflow matching \`${workflowParam}\``
         }
