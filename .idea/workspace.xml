@@ -7,7 +7,6 @@
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
@@ -36,9 +35,15 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/github.js">
       <ranges>
-        <range start1="6" end1="7" start2="6" end2="7" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="12" end1="13" start2="12" end2="16" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="24" end1="29" start2="27" end2="32" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
+        <range start1="8" end1="12" start2="8" end2="8" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="13" end1="14" start2="9" end2="11" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="15" end1="16" start2="12" end2="13" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="17" end1="18" start2="14" end2="14" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="19" end1="20" start2="15" end2="18" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="26" end1="32" start2="24" end2="31" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
+        <range start1="33" end1="34" start2="32" end2="33" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="36" end1="37" start2="35" end2="36" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="38" end1="41" start2="37" end2="39" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
       </ranges>
     </file>
   </component>
@@ -130,7 +135,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="17977000" />
+      <workItem from="1684259062318" duration="18757000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -454,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684292146691</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="fetched the repo url from the service JSON">
+      <created>1684295264852</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1684295264852</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +487,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactored bolt for better org" />
     <MESSAGE value="organized the logic better with the recognized commands on their own module" />
     <MESSAGE value="added 2 triggers so I can test locally as well" />
     <MESSAGE value="added testing module" />
@@ -500,7 +511,8 @@
     <MESSAGE value="removed legacy code" />
     <MESSAGE value="added some comments to better navigate the code" />
     <MESSAGE value="expanded the code to account for the new json payload" />
-    <option name="LAST_COMMIT_MESSAGE" value="expanded the code to account for the new json payload" />
+    <MESSAGE value="fetched the repo url from the service JSON" />
+    <option name="LAST_COMMIT_MESSAGE" value="fetched the repo url from the service JSON" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

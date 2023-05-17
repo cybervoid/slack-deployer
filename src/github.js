@@ -6,18 +6,16 @@ axios.defaults.headers.common = {
 
 module.exports.runDeployment = async (environment, branch, service) => {
 
-    let res = {
-        'success': false
-    };
-
     const serviceInfo = JSON.parse(process.env.SupportedApps)
-    axios.defaults.baseURL = `https://api.github.com/repos/${serviceInfo}/`;
+    const serviceURI = serviceInfo[service]["url"]
+    axios.defaults.baseURL = `https://api.github.com/repos/${serviceURI}/`;
 
-    console.log(`Calling workflow at: `, serviceInfo[service]["url"])
+    console.log(`Calling workflow at: `, axios.defaults.baseURL)
 
-    res['message'] = "";
     const workflows = await listWorkFlows();
-    res['message'] += `Fetching workflow list for selected repo ... \n`
+
+    let msg = `Fetching workflow list for selected repo ... \n`
+    console.log(msg)
     if (workflows.workflows) {
         const workflowParam = "deploy-to-k8s"
         const regExp = RegExp(workflowParam)
@@ -31,14 +29,13 @@ module.exports.runDeployment = async (environment, branch, service) => {
                 res['success'] = true
             }
         } else {
-            res['message'] += `Could not find a workflow matching \`${workflowParam}\``
+            msg += `Could not find a workflow matching \`${workflowParam}\``
         }
     } else {
-        res['message'] += `Could not get workflow list for this repo. More info: ${workflows} \n`
+        msg += `Could not get workflow list for this repo. More info: ${workflows} \n`
     }
 
-
-    return res;
+    return msg;
 }
 
 /**
