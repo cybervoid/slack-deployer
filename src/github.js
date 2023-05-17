@@ -1,14 +1,16 @@
+const {getServiceInfo} = require("./deployer");
 axios = require('axios');
 axios.defaults.headers.common = {
     'Authorization': `bearer ${process.env.GitHubToken}`,
     "Content-Type": "application/json"
 }
 
+axios.defaults.baseURL = `https://api.github.com/repos/`;
+
 module.exports.runDeployment = async (environment, branch, service) => {
 
-    const serviceInfo = JSON.parse(process.env.SupportedApps)
-    const serviceURI = serviceInfo[service]["url"]
-    axios.defaults.baseURL = `https://api.github.com/repos/${serviceURI}/`;
+    const serviceURI = getServiceInfo(service)
+    axios.defaults.baseURL += `${serviceURI}/`;
 
     console.log(`Calling workflow at: `, axios.defaults.baseURL)
 
@@ -17,7 +19,7 @@ module.exports.runDeployment = async (environment, branch, service) => {
     let msg = `Fetching workflow list for selected repo ... \n`
     console.log(msg)
     if (workflows.workflows) {
-        const workflowParam = "deploy-to-k8s"
+        const workflowParam = serviceInfo["workflowName"]
         const regExp = RegExp(workflowParam)
 
         let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
@@ -39,30 +41,40 @@ module.exports.runDeployment = async (environment, branch, service) => {
 }
 
 /**
- *
+ * Get a list of branches from GitHub
  */
-async function getCommandParameters(context) {
+exports.getBranches = async service => {
     const errorMsg = `Error fetching branch list. More Info:`
-    let res = {
-        'success': false
-    }
+
+    // const serviceInfo = getServiceInfo(service)
+    // const serviceURI = serviceInfo["url"]
+    const serviceURI = getServiceInfo(service)
+
+    console.log(`Getting branches at`, serviceURI)
+    axios.defaults.baseURL += `${serviceURI}/`;
+
     try {
-        const reqRes = await axios.get('branches')
+        const reqRes = await axios.get('branches').catch(err => {
+            console.log(`Error calling get branches from github`, err)
+            return {
+                message: err
+            }
+        })
+
         if (reqRes.status === 200) {
             const branches = reqRes.data;
 
-            let branchRes = matchBranchName(context, branches);
-
-            if (branchRes) {
-                res = {
-                    'success': true,
-                    'branch': branchRes['branch'],
-                    'server': branchRes['server'],
-                    'message': `Listing repo branches ... \n Found requested branch \`${branchRes['branch']}\` \n`
-                }
-            } else {
-                res['message'] = `${errorMsg} branch provided could not be found in the branch list \n`
-            }
+            console.log(`Branches`, branches)
+            // if (branchRes) {
+            //     res = {
+            //         'success': true,
+            //         'branch': branchRes['branch'],
+            //         'server': branchRes['server'],
+            //         'message': `Listing repo branches ... \n Found requested branch \`${branchRes['branch']}\` \n`
+            //     }
+            // } else {
+            //     res['message'] = `${errorMsg} branch provided could not be found in the branch list \n`
+            // }
         } else {
             res['message'] = `${errorMsg} ${reqRes.message} \n`
         }

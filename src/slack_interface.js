@@ -1,7 +1,7 @@
 const {validateRequest, canDeploy, getServiceWorkflows} = require("./deployer");
 const {renderDeploymentModal} = require('./modals/deployModal')
 const {renderSelectServiceModal} = require('./modals/selectServiceModal')
-const {runDeployment} = require("./github")
+const {runDeployment, getBranches} = require("./github")
 
 exports.attachSlackInterface = (app, event) => {
 
@@ -40,6 +40,8 @@ exports.attachSlackInterface = (app, event) => {
         // Acknowledge the command request
         await ack();
 
+        console.log(`Deployment requested, rendering deployment modal`)
+
         if (validateRequest(event)) {
             try {
                 const result = await client.views.open({
@@ -47,7 +49,6 @@ exports.attachSlackInterface = (app, event) => {
                     // View payload
                     view: renderSelectServiceModal()
                 });
-                // logger.info(result);
             } catch (error) {
                 logger.error(error);
             }
@@ -90,7 +91,7 @@ exports.attachSlackInterface = (app, event) => {
     });
 
     /**
-     * slack action to fetch the list of workflows for the selected application
+     * Slack action to fetch the list of workflows for the selected application
      */
     app.action('service-to-deploy-action', async ({ack, body, client, logger}) => {
         await ack();
@@ -99,7 +100,12 @@ exports.attachSlackInterface = (app, event) => {
 
         try {
             // Call views.update with the built-in client
+            console.log(`Service selected by the user`, serviceToDeploy)
+
             const workflows = getServiceWorkflows(serviceToDeploy)
+            const branches = await getBranches(serviceToDeploy).catch(err => {
+
+            })
 
             const result = await client.views.update({
                 // Pass the view_id

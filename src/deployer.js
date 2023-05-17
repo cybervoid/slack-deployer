@@ -1,4 +1,5 @@
 const querystring = require('querystring');
+const fullServiceInfo = JSON.parse(process.env.SupportedApps)
 
 function canDeploy(userId, user) {
     const allowedUsers = JSON.parse(process.env.AllowedUsers)
@@ -7,7 +8,7 @@ function canDeploy(userId, user) {
 
 }
 
-exports.validateRequest = (event) => {
+exports.validateRequest = event => {
 
     const decodedEventBody = Buffer.from(event.body, "base64").toString('utf-8')
     const payload = querystring.parse(decodedEventBody)
@@ -23,8 +24,8 @@ exports.validateRequest = (event) => {
  */
 exports.getServiceWorkflows = service => {
 
-    const supportedApps = JSON.parse(process.env.SupportedApps)
-    const serviceInfo = supportedApps[service][["workflows"]]
+    const serviceInfo = getServiceInfo()[service][["workflows"]]
+    console.log(`Getting workflow from SupportedApps JSON`, service)
 
     const res = []
     serviceInfo.forEach(currentElement => {
@@ -42,5 +43,18 @@ exports.getServiceWorkflows = service => {
     return res
 }
 
+/**
+ * Gets service information from the JSON provided in the env variables
+ *
+ * If the service parameter is provided, the corresponding key will be returned with the URI
+ *
+ * @param service
+ * @returns {*}
+ */
+function getServiceInfo(service = false) {
+    return service !== false ? fullServiceInfo[service]["url"] : fullServiceInfo
+}
+
 exports.canDeploy = canDeploy
+exports.getServiceInfo = getServiceInfo
 

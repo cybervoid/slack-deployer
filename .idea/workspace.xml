@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/deployer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/deployer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
@@ -35,15 +37,16 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/github.js">
       <ranges>
-        <range start1="8" end1="12" start2="8" end2="8" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="13" end1="14" start2="9" end2="11" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="15" end1="16" start2="12" end2="13" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="17" end1="18" start2="14" end2="14" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="19" end1="20" start2="15" end2="18" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="26" end1="32" start2="24" end2="31" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
-        <range start1="33" end1="34" start2="32" end2="33" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="36" end1="37" start2="35" end2="36" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="38" end1="41" start2="37" end2="39" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="0" end1="0" start2="0" end2="1" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="5" end1="5" start2="6" end2="8" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="8" end1="11" start2="11" end2="13" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="19" end1="20" start2="21" end2="22" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="24" end1="30" start2="26" end2="33" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
+        <range start1="41" end1="42" start2="44" end2="45" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="43" end1="44" start2="46" end2="47" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="45" end1="48" start2="48" end2="56" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="49" end1="50" start2="57" end2="64" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
+        <range start1="53" end1="65" start2="67" end2="78" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
       </ranges>
     </file>
   </component>
@@ -59,30 +62,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.0.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.0.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rafag/Documents/projects/personal/slack-deployer&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/rafag/Library/Application Support/JetBrains/Toolbox/apps/PhpStorm/ch-0/231.8770.68/PhpStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "20.0.0",
+    "javascript.nodejs.core.library.typings.version": "20.0.0",
+    "last_opened_file_path": "/Users/rafag/Documents/projects/personal/slack-deployer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/rafag/Library/Application Support/JetBrains/Toolbox/apps/PhpStorm/ch-0/231.8770.68/PhpStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;DotEnv&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON",
+      "DotEnv"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -135,7 +139,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="18757000" />
+      <workItem from="1684259062318" duration="23031000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -466,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684295264852</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="added some logging">
+      <created>1684296008944</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1684296008944</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +498,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="organized the logic better with the recognized commands on their own module" />
     <MESSAGE value="added 2 triggers so I can test locally as well" />
     <MESSAGE value="added testing module" />
     <MESSAGE value="extracted the modal to its own class to make it more readable" />
@@ -512,7 +522,8 @@
     <MESSAGE value="added some comments to better navigate the code" />
     <MESSAGE value="expanded the code to account for the new json payload" />
     <MESSAGE value="fetched the repo url from the service JSON" />
-    <option name="LAST_COMMIT_MESSAGE" value="fetched the repo url from the service JSON" />
+    <MESSAGE value="added some logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some logging" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -531,7 +542,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/deployer.js</url>
-          <line>12</line>
+          <line>13</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
