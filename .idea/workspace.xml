@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/legacy/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/deployer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/deployer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modals/selectServiceModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/selectServiceModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="" />
@@ -122,7 +118,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="11731000" />
+      <workItem from="1684259062318" duration="12313000" />
     </task>
     <task id="LOCAL-00001" summary="- reads command from slack with instructions">
       <created>1594522334204</created>
@@ -418,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684268091355</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="added github library">
+      <created>1684288424028</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1684288424028</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +442,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added new template.yaml for aws sam" />
     <MESSAGE value="added bolt" />
     <MESSAGE value="exclude samconfig" />
     <MESSAGE value="added bolt.js to the mix" />
@@ -464,7 +466,8 @@
     <MESSAGE value="removed submit btn from the first modal" />
     <MESSAGE value="prepared a deployment flow" />
     <MESSAGE value="added axios to call github" />
-    <option name="LAST_COMMIT_MESSAGE" value="added axios to call github" />
+    <MESSAGE value="added github library" />
+    <option name="LAST_COMMIT_MESSAGE" value="added github library" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
