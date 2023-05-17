@@ -64,16 +64,16 @@ exports.attachSlackInterface = (app, event) => {
     app.view('view_deploy_callback', async ({ack, body, view, client, logger}) => {
         // Acknowledge the view_submission request
         await ack();
+
         const user = body['user']['username'];
         const userId = body['user']['id'];
         const branch = view['state']['values']["deployment_branches"]["branch-action"]["selected_option"]["value"];
-
         const environment = view['state']['values']['deployment_environment']["environment-action"]["selected_option"]["value"];
         const service = view.private_metadata
+
         let msg = `Error calling github action workflow for ${environment} while trying to deploy ${branch} to ${service}`
 
         try {
-            //add validate request here
             if (canDeploy(userId, user)) {
                 console.log(msg)
                 msg = await runDeployment(environment, branch, service).catch(err => console.log(msg, err))

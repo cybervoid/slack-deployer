@@ -1,6 +1,6 @@
 const {loadBoltLocal, loadBoltLambda} = require("./bolt_connector");
 
-exports.handler = async (event, context) => {
+exports.handler = async (event, context, callback) => {
 
     try {
         if (event === undefined) {
@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
             const bolt = loadBoltLocal(event)
             await bolt.start(3000);
         } else {
-            return await loadBoltLambda(event, context)
+            return await loadBoltLambda(event, context, callback)
         }
 
     } catch (error) {

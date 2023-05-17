@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
@@ -31,15 +32,6 @@
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="home" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/github.js">
-      <ranges>
-        <range start1="11" end1="16" start2="11" end2="11" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="22" end1="22" start2="17" end2="18" changelist="1581dd1b-e3fd-4710-8ceb-3499fde40f67" />
-        <range start1="26" end1="32" start2="22" end2="29" changelist="5c6dee31-2301-418c-8d57-c8539ca31fa9" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -130,14 +122,7 @@
       <workItem from="1683933203083" duration="28422000" />
       <workItem from="1684186659065" duration="24000" />
       <workItem from="1684186691517" duration="23002000" />
-      <workItem from="1684259062318" duration="28158000" />
-    </task>
-    <task id="LOCAL-00005" summary="- working flow">
-      <created>1594736697954</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1594736697954</updated>
+      <workItem from="1684259062318" duration="28418000" />
     </task>
     <task id="LOCAL-00006" summary="- improvement to the branch searching logic">
       <created>1594761114395</created>
@@ -475,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684305003801</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="fixed bug that was duplicating the axios url">
+      <created>1684305478041</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1684305478041</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +488,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added an allowed user section to have some control over the bot's api" />
     <MESSAGE value="add user security check for deployments" />
     <MESSAGE value="added logic to extract information from dialog" />
     <MESSAGE value="added response to the modal submit" />
@@ -521,7 +512,8 @@
     <MESSAGE value="worked on preparing the modal with the list of branches" />
     <MESSAGE value="successfully connected selected branch with the flow" />
     <MESSAGE value="added feedback in case of error via slack" />
-    <option name="LAST_COMMIT_MESSAGE" value="added feedback in case of error via slack" />
+    <MESSAGE value="fixed bug that was duplicating the axios url" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug that was duplicating the axios url" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
