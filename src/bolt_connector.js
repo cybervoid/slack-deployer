@@ -13,7 +13,14 @@ exports.loadBoltLocal = (event) => {
     return app;
 }
 
-
+/**
+ *  Initiates Slack's Framework
+ *
+ * @param event
+ * @param context
+ * @param callback
+ * @returns {Promise<AwsResponse>}
+ */
 exports.loadBoltLambda = async (event, context, callback) => {
     const awsLambdaReceiver = new AwsLambdaReceiver({
         signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -24,6 +31,7 @@ exports.loadBoltLambda = async (event, context, callback) => {
         receiver: awsLambdaReceiver,
     });
 
+    // attach all the recognized commands with their logic
     attachSlackInterface(app, event)
 
     const handler = await awsLambdaReceiver.start();

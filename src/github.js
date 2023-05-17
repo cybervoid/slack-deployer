@@ -3,13 +3,14 @@ axios.defaults.headers.common = {
     'Authorization': `bearer ${process.env.GitHubToken}`,
     "Content-Type": "application/json"
 }
-axios.defaults.baseURL = `https://api.github.com/repos/${process.env.GitHubOrganization}/mpd/`;
 
 module.exports.runDeployment = async (environment, branch) => {
 
     let res = {
         'success': false
     };
+
+    axios.defaults.baseURL = `https://api.github.com/repos/${process.env.GitHubOrganization}/mpd/`;
 
     res['message'] = "";
     const workflows = await listWorkFlows();

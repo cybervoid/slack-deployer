@@ -6,7 +6,7 @@ const {runDeployment} = require("./github")
 exports.attachSlackInterface = (app, event) => {
 
     const failedValidationMessage = `Sorry, you are not allowed to run this deployment`
-    console.log(`Request received`, event.body.isBase64Encoded === true ? Buffer.from(event.body, "base64").toString('utf-8') : event.body)
+    console.log(`Request received`, event.isBase64Encoded === true ? Buffer.from(event.body, "base64").toString('utf-8') : event.body)
 
     // Listens to incoming messages that contain "hello"
     app.message('hello', async ({message, say}) => {
@@ -33,6 +33,9 @@ exports.attachSlackInterface = (app, event) => {
         });
     });
 
+    /**
+     * Process starts here for the deployment flow
+     */
     app.command('/deploy', async ({ack, body, client, logger, say}) => {
         // Acknowledge the command request
         await ack();
@@ -40,7 +43,6 @@ exports.attachSlackInterface = (app, event) => {
         if (validateRequest(event)) {
             try {
                 const result = await client.views.open({
-                    // Pass a valid trigger_id within 3 seconds of receiving it
                     trigger_id: body.trigger_id,
                     // View payload
                     view: renderSelectServiceModal()
@@ -55,6 +57,9 @@ exports.attachSlackInterface = (app, event) => {
 
     });
 
+    /**
+     * Actual deployment, invoked by the last Modal (on submit)
+     */
     app.view('view_deploy_callback', async ({ack, body, view, client, logger}) => {
         // Acknowledge the view_submission request
         await ack();
@@ -64,7 +69,6 @@ exports.attachSlackInterface = (app, event) => {
         console.log(`Request to deploy received`)
 
         try {
-
             //add validate request here
             if (canDeploy(userId, user)) {
                 const branch = view['state']['values']['branch']["branch-action"]["value"];
@@ -88,6 +92,9 @@ exports.attachSlackInterface = (app, event) => {
         }
     });
 
+    /**
+     * slack action to fetch the list of workflows for the selected application
+     */
     app.action('service-to-deploy-action', async ({ack, body, client, logger}) => {
         await ack();
 
@@ -103,7 +110,6 @@ exports.attachSlackInterface = (app, event) => {
                 // View payload with updated blocks
                 view: renderDeploymentModal(getServiceDeployments(serviceToDeploy))
             });
-            logger.info(result);
         } catch (error) {
             logger.error(error);
         }
