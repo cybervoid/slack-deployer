@@ -2,30 +2,34 @@
 
 ## Description
 
-Slack deployer is a Slack App, used to trigger GitHub Actions Workflows, ideally with logic to deploy your application.
-It is triggered via a "slash command" `/deploy`. This command will show a modal in slack with the information provided
-by the environment variable named `SupportedApps` (see below). Once you click on submit in the dialog, the information
-selected by the user will be provided to GitHub to the selected workflow with the selected inputs. Your workflow can
-choose to do whatever your app needs to automate such a deployments to kubernetes, call a codebuild script, etc.
+Slack Deployer is a Slack App that allows you to trigger GitHub Actions Workflows for deploying your application. It
+integrates with Slack using a "slash command" /deploy. When this command is used, a modal is displayed in Slack,
+populated with information from the SupportedApps environment variable (see below). After selecting the desired options
+and clicking "Submit" in the dialog, the selected information is sent to GitHub, triggering the corresponding workflow
+with the chosen inputs. This workflow can be customized to automate various deployment tasks, such as deploying to
+Kubernetes or running a code build script.hoose to do whatever your app needs to automate such a deployments to
+kubernetes, call a codebuild script, etc.
 
-This project has a template based on [AWS SAM](https://aws.amazon.com/serverless/sam/), this template will spin up the
-following resources:
+The project provides a template based on [AWS SAM](https://aws.amazon.com/serverless/sam/). When deployed, the template
+sets up the following resources:
 
-- Api gateway
-- Secrets Manager to store GitHub and Slack's token
-- lambda function (where bolt will be responding)
+- API Gateway
+- Secrets Manager for storing GitHub and Slack tokens
+- Lambda function (where Bolt will handle the responses)
 
 Pending, maybe add a screenshot
 
-## How to install it
+## Installation
 
-Run `sam deploy -g` to have SAM deploy your templates to build the infrastructure for this project along with its code.
-This process will prompt you for the environment variables needed by the project. Make sure to remove white spaces in
-the provided JSONs so its value can be picked up correctly by the framework, online tools can be used such
-as https://codebeautify.org/remove-extra-spaces.
+To install Slack Deployer, follow these steps:
 
-At the end of this process the newly created API endpoint will be shown in your terminal, this will be required by slack
-so it knows where to send the backend requests.
+- Run `sam deploy -g` to deploy the SAM templates and build the infrastructure for the project. During this process, you
+  will be prompted to enter the necessary environment variables. Ensure that there are no white spaces in the provided
+  JSONs, as the framework relies on correctly formatted values. You can use online tools
+  like [Code Beautify](https://codebeautify.org/remove-extra-spaces) to remove extra spaces.
+
+- Once the deployment process is complete, the newly created API endpoint will be displayed in your terminal. This
+  endpoint is required by Slack to route backend requests.
 
 ## Slack Configuration
 
