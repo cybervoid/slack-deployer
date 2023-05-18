@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1581dd1b-e3fd-4710-8ceb-3499fde40f67" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modals/deployModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/deployModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modals/selectServiceModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modals/selectServiceModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slack_interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slack_interface.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <list id="5c6dee31-2301-418c-8d57-c8539ca31fa9" name="New changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,14 +121,7 @@
       <workItem from="1684186691517" duration="23002000" />
       <workItem from="1684259062318" duration="29216000" />
       <workItem from="1684327275227" duration="1950000" />
-      <workItem from="1684340864055" duration="4508000" />
-    </task>
-    <task id="LOCAL-00009" summary="- improve error logging to slack">
-      <created>1594762041286</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1594762041286</updated>
+      <workItem from="1684340864055" duration="10372000" />
     </task>
     <task id="LOCAL-00010" summary="- improve error logging to slack">
       <created>1594763903668</created>
@@ -469,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684339601662</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary=" added an option to respond to the correct channel">
+      <created>1684352635720</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1684352635721</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +487,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added response to the modal submit" />
     <MESSAGE value="added validation to check for deployment access after selecting settings in the modal" />
     <MESSAGE value="added action to define what service will be deployed" />
     <MESSAGE value="started a modals folder" />
@@ -515,7 +511,8 @@
     <MESSAGE value="fixed bug that was duplicating the axios url" />
     <MESSAGE value="clean up" />
     <MESSAGE value="tweaked the logic to better report the status of a deployment" />
-    <option name="LAST_COMMIT_MESSAGE" value="tweaked the logic to better report the status of a deployment" />
+    <MESSAGE value=" added an option to respond to the correct channel" />
+    <option name="LAST_COMMIT_MESSAGE" value=" added an option to respond to the correct channel" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
