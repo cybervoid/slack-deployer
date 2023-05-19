@@ -24,7 +24,7 @@ exports.loadBoltLocal = (event) => {
  */
 exports.loadBoltLambda = async (event, context, callback) => {
     const awsLambdaReceiver = new AwsLambdaReceiver({
-        signingSecret: process.env.SLACK_SIGNING_SECRET,
+        signingSecret: await getSecret(process.env.SLACK_SIGNING_SECRET),
     });
 
     const app = new App({
