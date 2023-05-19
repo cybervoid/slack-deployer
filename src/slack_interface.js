@@ -77,7 +77,7 @@ exports.attachSlackInterface = (app, event) => {
 
         try {
             if (canDeploy(userId, user)) {
-                msg = await runDeployment(environment, branch, service).catch(err => console.log(msg, err))
+                msg = await runDeployment(environment, branch, metadata.service).catch(err => console.log(msg, err))
                 console.log(`Debug Data`, msg)
             } else {
                 msg = failedValidationMessage
@@ -90,7 +90,6 @@ exports.attachSlackInterface = (app, event) => {
             channel: metadata.channel,
             text: msg
         });
-
     });
 
     /**

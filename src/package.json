@@ -26,6 +26,7 @@
     },
     "homepage": "https://github.com/cybervoid/slack-deployer#readme",
     "dependencies": {
+        "@aws-sdk/client-secrets-manager": "^3.335.0",
         "@slack/bolt": "^3.13.1",
         "axios": "^1.4.0",
         "querystring": "^0.2.1"

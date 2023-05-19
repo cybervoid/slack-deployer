@@ -1,11 +1,7 @@
+const {getSecret} = require("./deployer")
+
 const {getServiceInfo} = require("./deployer");
 axios = require('axios');
-axios.defaults.headers.common = {
-    'Authorization': `bearer ${process.env.GitHubToken}`,
-    "Content-Type": "application/json"
-}
-
-axios.defaults.baseURL = `https://api.github.com/repos/`;
 
 module.exports.runDeployment = async (environment, branch, service) => {
 
@@ -34,6 +30,17 @@ module.exports.runDeployment = async (environment, branch, service) => {
     return msg;
 }
 
+async function initAxios(url) {
+    const githubToken = await getSecret(process.env.GitHubToken)
+    axios.defaults.headers.common = {
+        'Authorization': `bearer ${githubToken}`,
+        "Content-Type": "application/json"
+    }
+
+    axios.defaults.baseURL = `https://api.github.com/repos/${url}/`;
+
+}
+
 /**
  * Get a list of branches from GitHub
  */
@@ -46,6 +53,7 @@ exports.getBranches = async service => {
     }
 
     const serviceURI = getServiceInfo(service)
+    await initAxios(serviceURI)
 
     console.log(`Getting branches at`, serviceURI)
     if (axios.defaults.baseURL.includes(serviceURI) !== true) {
@@ -64,24 +72,6 @@ exports.getBranches = async service => {
         }
     } catch (e) {
         console.log(errorMsg, e)
-    }
-
-    return res
-}
-
-function matchBranchName(context, branchList) {
-    let res = false;
-
-    for (let i = 1; i <= 2; i++) {
-        const branch = branchList.find(el => el.name === context[i])
-
-        if (branch) {
-            res = {
-                'branch': branch.name,
-                'server': context[i === 1 ? 2 : 1]
-            }
-            break
-        }
     }
 
     return res

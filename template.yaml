@@ -53,14 +53,17 @@ Resources:
     Properties:
       FunctionName: !Sub '${AppName}-function'
       Handler: app.handler
-      # Example function environment variables
       Environment:
         Variables:
           SLACK_BOT_TOKEN: !Ref SlackToken
           SLACK_SIGNING_SECRET: !Ref SlackSignature
           AllowedUsers: !Join [ ",", !Ref AllowedUsers ]
           SupportedApps: !Join [ ",", !Ref SupportedApps ]
-          GitHubToken: !Ref GitHubToken
+          GitHubToken: !Sub githubToken-${AWS::StackName}
+      Policies:
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Ref GitHubTokenSecret
+
   # Function permissions grant an AWS service or another account permission to use a function
   FunctionResourcePermission:
     Type: 'AWS::Lambda::Permission'
@@ -70,7 +73,20 @@ Resources:
       FunctionName: !Ref LambdaFunction
       SourceArn: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*'
 
+  GitHubTokenSecret:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: !Sub githubToken-${AWS::StackName}
+      SecretString: !Ref GitHubToken
+      Description: "Secret with dynamically generated secret password."
+
 Outputs:
+  GitHubTokenSecret:
+    Value: !Ref GitHubTokenSecret
+    Description: GitHubTokenSecret ARN
+  MySecretName:
+    Value: !Ref GitHubToken
+    Description: GitHubToken
   HttpApiEndpoint:
     Description: The default endpoint for the HTTP API.
     Value: !GetAtt HttpApi.ApiEndpoint

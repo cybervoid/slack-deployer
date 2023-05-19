@@ -1,3 +1,6 @@
+const { SecretsManagerClient, GetSecretValueCommand} = require("@aws-sdk/client-secrets-manager");
+
+
 const querystring = require('querystring');
 const fullServiceInfo = JSON.parse(process.env.SupportedApps)
 
@@ -53,6 +56,17 @@ exports.getServiceWorkflows = service => {
  */
 function getServiceInfo(service = false) {
     return service !== false ? fullServiceInfo[service]["url"] : fullServiceInfo
+}
+
+exports.getSecret = async secretName => {
+
+    const client = new SecretsManagerClient();
+    const input = { "SecretId": secretName }
+    const command = new GetSecretValueCommand(input);
+
+    const secret = await client.send(command);
+    console.log('Retrieving secret during top-level await', secret.SecretString)
+    return secret.SecretString
 }
 
 exports.canDeploy = canDeploy
