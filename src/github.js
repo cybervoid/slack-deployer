@@ -79,10 +79,7 @@ exports.getBranches = async service => {
 
 async function runWorkflow(name, branch, environment) {
     const url = `actions/workflows/${name}/dispatches`;
-    const res = {
-        'success': false,
-        'message': `Error trying to initiate workflow ${name}`
-    };
+    let res = `Error trying to initiate workflow ${name}`
 
     try {
         const workflowInput = {
@@ -97,13 +94,12 @@ async function runWorkflow(name, branch, environment) {
             "inputs": workflowInput
         });
         if (creationRes.status === 204) {
-            res['success'] = true;
-            res['message'] = 'Success from Github, deployment workflow triggered successfully'
+            res = 'Success from Github, deployment workflow triggered successfully :bender_dance:'
         } else {
-            res['message'] += `, return request status ${creationRes.status}, data: ${creationRes.data}`
+            res += `, return request status ${creationRes.status}, data: ${creationRes.data}`
         }
     } catch (e) {
-        res['message'] += `, error response: ${e.message}`;
+        res += `, error response: ${e.message}`;
     }
 
     return res
