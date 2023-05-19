@@ -55,12 +55,19 @@ Resources:
       Handler: app.handler
       Environment:
         Variables:
-          SLACK_BOT_TOKEN: !Ref SlackToken
+          SLACK_BOT_TOKEN: !Sub slack-bot-token-${AWS::StackName}
           SLACK_SIGNING_SECRET: !Ref SlackSignature
           AllowedUsers: !Join [ ",", !Ref AllowedUsers ]
           SupportedApps: !Join [ ",", !Ref SupportedApps ]
           GitHubToken: !Sub githubToken-${AWS::StackName}
       Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - 'secretsmanager:GetSecretValue'
+              Resource:
+                - !Ref SlackBotTokenSecret
+                - !Ref GitHubTokenSecret
         - AWSSecretsManagerGetSecretValuePolicy:
             SecretArn: !Ref GitHubTokenSecret
 
@@ -79,6 +86,13 @@ Resources:
       Name: !Sub githubToken-${AWS::StackName}
       SecretString: !Ref GitHubToken
       Description: "Secret with dynamically generated secret password."
+
+  SlackBotTokenSecret:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: !Sub slack-bot-token-${AWS::StackName}
+      SecretString: !Ref SlackToken
+      Description: "Slack Bot Token"
 
 Outputs:
   GitHubTokenSecret:
