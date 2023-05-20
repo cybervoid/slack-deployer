@@ -61,12 +61,38 @@ function getServiceInfo(service = false) {
 exports.getSecret = async secretName => {
 
     const client = new SecretsManagerClient();
-    const input = { "SecretId": secretName }
+    const input = {"SecretId": secretName}
     const command = new GetSecretValueCommand(input);
 
     const secret = await client.send(command);
     console.log('Retrieving secret during top-level await', secret.SecretString)
     return secret.SecretString
+}
+
+exports.healthz = async message => {
+    const serviceInfo = process.env.SupportedApps
+    const approvedUsers = process.env.AllowedUsers
+
+    return {
+        blocks: [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": `Hey there <@${message.user}>!`
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Click Me"
+                    },
+                    "action_id": "button_click"
+                }
+            }
+        ],
+        text: `Hey there <@${message.user}>`
+    }
 }
 
 exports.canDeploy = canDeploy
