@@ -32,8 +32,9 @@ exports.healthzModal = (message, services, users) => {
     }
 
     const serviceReport = parseServiceList(services)
+    const usersReport = getUserReport(users)
 
-    healthReport["blocks"] = [...healthReport["blocks"], ...serviceReport]
+    healthReport["blocks"] = [...healthReport["blocks"], ...serviceReport, ...usersReport]
     return healthReport
 }
 
@@ -65,4 +66,33 @@ function getWorkflows(serviceInfo) {
         res += ` \t - *${workflow["name"]} * : ${workflow["value"]} \n`
     })
     return res
+}
+
+function getUserReport(users) {
+    const userNames = Object.keys(users)
+
+    let res = `Users found ${userNames.length} \n`
+    userNames.forEach(user => {
+        res += ` - *${user}* \n`
+    })
+
+    return [
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": ":bender_dance: Looking for authorized users ..."
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": res
+            }
+        }
+    ]
 }
