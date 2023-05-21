@@ -13,6 +13,10 @@ exports.attachSlackInterface = (app, event) => {
         await say(await healthz(message));
     });
 
+    app.message('hi', async ({message, say}) => {
+        await say(await healthz(message));
+    });
+
     /**
      * Process starts here for the deployment flow
      */

@@ -1,7 +1,8 @@
-const { SecretsManagerClient, GetSecretValueCommand} = require("@aws-sdk/client-secrets-manager");
+const {SecretsManagerClient, GetSecretValueCommand} = require("@aws-sdk/client-secrets-manager");
 
 
 const querystring = require('querystring');
+const {healthzModal} = require("./modals/healthzModal");
 const fullServiceInfo = JSON.parse(process.env.SupportedApps)
 
 function canDeploy(userId, user) {
@@ -65,15 +66,14 @@ exports.getSecret = async secretName => {
     const command = new GetSecretValueCommand(input);
 
     const secret = await client.send(command);
-    console.log('Retrieving secret during top-level await', secret.SecretString)
     return secret.SecretString
 }
 
 exports.healthz = async message => {
-    const serviceInfo = process.env.SupportedApps
-    const approvedUsers = process.env.AllowedUsers
+    const serviceInfo = JSON.parse(process.env.SupportedApps)
+    const approvedUsers = JSON.parse(process.env.AllowedUsers)
 
-    return {
+    const legacy = {
         blocks: [
             {
                 "type": "section",
@@ -81,18 +81,11 @@ exports.healthz = async message => {
                     "type": "mrkdwn",
                     "text": `Hey there <@${message.user}>!`
                 },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me"
-                    },
-                    "action_id": "button_click"
-                }
             }
         ],
         text: `Hey there <@${message.user}>`
     }
+    return healthzModal(message, serviceInfo, approvedUsers)
 }
 
 exports.canDeploy = canDeploy
