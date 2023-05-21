@@ -1,7 +1,7 @@
-const {validateRequest, canDeploy, getServiceWorkflows, healthz} = require("./deployer");
-const {renderDeploymentModal} = require('./modals/deployModal')
-const {renderSelectServiceModal} = require('./modals/selectServiceModal')
-const {runDeployment, getBranches} = require("./github")
+const {validateRequest, canDeploy, getServiceWorkflows, healthz} = require("../deployer");
+const {renderDeploymentModal} = require('../modals/deployModal')
+const {renderSelectServiceModal} = require('../modals/selectServiceModal')
+const {runDeployment, getBranches} = require("../github")
 
 exports.attachSlackInterface = (app, event) => {
 

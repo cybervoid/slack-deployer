@@ -1,6 +1,6 @@
 const {App, AwsLambdaReceiver} = require('@slack/bolt');
 const {attachSlackInterface} = require('./slack_interface')
-const {getSecret} = require("./deployer");
+const {getSecret} = require("../deployer");
 
 
 exports.loadBoltLocal = (event) => {

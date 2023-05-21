@@ -1,4 +1,4 @@
-const {loadBoltLocal, loadBoltLambda} = require("./bolt_connector");
+const {loadBoltLocal, loadBoltLambda} = require("./slack/bolt_connector");
 
 exports.handler = async (event, context, callback) => {
 
