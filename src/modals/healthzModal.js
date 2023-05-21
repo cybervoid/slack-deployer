@@ -1,6 +1,6 @@
 exports.healthzModal = (message, services, users) => {
 
-    const healthReport = {
+    let healthReport = {
         "blocks": [
             {
                 "type": "header",
@@ -37,7 +37,7 @@ exports.healthzModal = (message, services, users) => {
     return healthReport
 }
 
-async function parseServiceList(serviceInfo) {
+function parseServiceList(serviceInfo) {
     const serviceReport = []
     const services = Object.keys(serviceInfo)
 
@@ -52,9 +52,8 @@ async function parseServiceList(serviceInfo) {
  - \`workflow\`: <https://github.com/${serviceInfo[service]["url"]}/blob/develop/.github/workflows/${serviceInfo[service]["workflowName"]}.yml|${serviceInfo[service]["workflowName"]}> 
  - \`workflows inputs\`:  
  ${getWorkflows(serviceInfo[service]["workflows"])}`
-                }
             }
-        )
+        })
     })
 
     return serviceReport
