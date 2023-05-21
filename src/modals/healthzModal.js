@@ -33,7 +33,7 @@ exports.healthzModal = (message, services, users) => {
 
     const serviceReport = parseServiceList(services)
 
-    healthReport["blocks"] = Object.assign(healthReport["blocks"], serviceReport)
+    healthReport["blocks"] = [...healthReport["blocks"], ...serviceReport]
     return healthReport
 }
 
