@@ -1,4 +1,3 @@
-const {GITHUB_URL, getGithubURL} = require("../github");
 exports.healthzModal = (message, services, users) => {
 
     const healthReport = {
