@@ -28,7 +28,7 @@ exports.healthzModal = (message, services, users) => {
                 }
             },
         ],
-        text: `You should not see this text`
+        text: `Health report complete!`
     }
 
     const serviceReport = parseServiceList(services)
