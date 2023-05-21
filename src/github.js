@@ -11,7 +11,6 @@ module.exports.runDeployment = async (environment, branch, service) => {
     console.log(msg)
     if (workflows.workflows) {
         const workflowParam = getServiceInfo()[service]["workflowName"]
-        console.log(`Delete me`, workflowParam)
         const regExp = RegExp(workflowParam)
 
         let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
