@@ -1,3 +1,4 @@
+const {GITHUB_URL, getGithubURL} = require("../github");
 exports.healthzModal = (message, services, users) => {
 
     const healthReport = {
@@ -46,14 +47,14 @@ function parseServiceList(serviceInfo) {
     services.forEach(service => {
 
         serviceReport.push({
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": `Found service *${service.toUpperCase()}*: 
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": `Found service *${service.toUpperCase()}*: 
  - \`url\`: ${serviceInfo[service]["url"]} 
- - \`workflowName\`: ${serviceInfo[service]["workflowName"]} 
- - \`workflows\`:  
- ${getWorkflows(serviceInfo[service]["workflows"])}
+ - \`workflowName\`: <https://github.com/${serviceInfo[service]["url"]}/blob/develop/.github/workflows/${serviceInfo[service]["workflowName"]}.yml|${serviceInfo[service]["workflowName"]}> 
+ - \`workflows inputs\`:  
+ ${getWorkflows(serviceInfo[service]["workflows"])}`
                 }
             },
             {
@@ -75,9 +76,7 @@ function getWorkflows(serviceInfo) {
     let res = ``
     serviceInfo.forEach(workflow => {
         console.log(`DEBUG workflow`, workflow)
-        res += ` \t - *${workflow["name"]} *
-    : ${workflow["value"]}
-    \n`
+        res += ` \t - *${workflow["name"]} * : ${workflow["value"]} \n`
     })
     return res
 }
