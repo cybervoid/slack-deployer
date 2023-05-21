@@ -111,4 +111,14 @@ exports.attachSlackInterface = (app, event) => {
             logger.error(error);
         }
     });
+
+    app.command('/deployer_help', async ({ack, body, client, logger, say}) => {
+        // Acknowledge the command request
+        await ack();
+
+        console.log(`Help command requested`, body)
+        await say(await healthz({user: body["user_name"]}), {
+            channel: body['user_id']
+        })
+    })
 }

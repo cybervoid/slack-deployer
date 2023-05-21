@@ -73,18 +73,6 @@ exports.healthz = async message => {
     const serviceInfo = JSON.parse(process.env.SupportedApps)
     const approvedUsers = JSON.parse(process.env.AllowedUsers)
 
-    const legacy = {
-        blocks: [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": `Hey there <@${message.user}>!`
-                },
-            }
-        ],
-        text: `Hey there <@${message.user}>`
-    }
     return healthzModal(message, serviceInfo, approvedUsers)
 }
 
