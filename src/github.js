@@ -1,6 +1,5 @@
-const {getSecret} = require("./deployer")
+const {getSecret, getServiceInfo} = require("./deployer")
 
-const {getServiceInfo} = require("./deployer");
 axios = require('axios');
 
 module.exports.runDeployment = async (environment, branch, service) => {
