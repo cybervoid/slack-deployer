@@ -69,6 +69,7 @@ exports.attachSlackInterface = (app, event) => {
                 console.log(`Debug Data`, msg)
             } else {
                 msg = failedValidationMessage
+                console.log(`Alert!! user tried to deploy while not allowed. User: ${user} with ID: ${userId}`)
             }
         } catch (error) {
             logger.error(error);

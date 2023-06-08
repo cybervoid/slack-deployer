@@ -34,7 +34,7 @@ exports.renderDeploymentModal = (workflows, metadata, branches) => {
                 },
                 "label": {
                     "type": "plain_text",
-                    "text": "Deploy to:",
+                    "text": "Branch to deploy:",
                     "emoji": true
                 }
             },
@@ -53,7 +53,7 @@ exports.renderDeploymentModal = (workflows, metadata, branches) => {
                 },
                 "label": {
                     "type": "plain_text",
-                    "text": "Deploy to:",
+                    "text": "Environment to deploy to:",
                     "emoji": true
                 }
             }
