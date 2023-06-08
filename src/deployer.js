@@ -76,6 +76,17 @@ exports.healthz = async message => {
     return healthzModal(message, serviceInfo, approvedUsers)
 }
 
+/**
+ * Returns the url section from the settings JSON, should match the owner/repo_name section
+ * of a GitHub URL
+ *
+ * @param service
+ * @returns {*}
+ */
+exports.getRepoURI = service => {
+    return getServiceInfo(service)
+}
+
 exports.canDeploy = canDeploy
 exports.getServiceInfo = getServiceInfo
 

@@ -1,12 +1,11 @@
-const {getSecret, getServiceInfo} = require("./deployer")
-
+const {getSecret, getServiceInfo, getRepoURI} = require("./deployer")
 axios = require('axios');
 
 module.exports.runDeployment = async (environment, branch, service) => {
 
     const workflows = await listWorkFlows();
 
-    let msg = `Deployment request received \n Fetching workflow list for selected repo ... \n`
+    let msg = `Deployment request received \n Fetching workflow list for *${service.toUpperCase()}* ... \n`
     console.log(msg)
     if (workflows.workflows) {
         const workflowParam = getServiceInfo()[service]["workflowName"]
@@ -14,9 +13,9 @@ module.exports.runDeployment = async (environment, branch, service) => {
 
         let workFlowFile = workflows.workflows.find(element => regExp.exec(element.path));
         if (workFlowFile) {
-            msg += `Deployment workflow found: \`${workFlowFile.name}\` \n Requesting github to run it for branch \`${branch}\` \n`
+            msg += `Deployment workflow found: \`${workFlowFile.name}\` \nRequesting github to run it for branch \`${branch}\` \n`
             console.log(msg)
-            msg += await runWorkflow(workFlowFile.id, branch, environment)
+            msg += await runWorkflow(workFlowFile.id, branch, environment, service)
             console.log(msg)
         } else {
             msg += `Could not find a workflow matching \`${workflowParam}\``
@@ -75,10 +74,12 @@ exports.getBranches = async service => {
     return res
 }
 
-async function runWorkflow(name, branch, environment) {
+async function runWorkflow(name, branch, environment, service) {
 
     const url = `actions/workflows/${name}/dispatches`;
     let res = `Error trying to initiate workflow ${name}`
+
+    const workflowURL = `https://github.com/${getRepoURI(service)}/actions`
 
     try {
         const workflowInput = {
@@ -94,7 +95,7 @@ async function runWorkflow(name, branch, environment) {
                 "inputs": workflowInput
             });
             if (creationRes.status === 204) {
-                res = 'Success from Github, deployment workflow triggered successfully :bender_dance:'
+                res = `Success from GitHub, deployment workflow triggered successfully :bender_dance: \nProgress can be monitored in <${workflowURL}|GitHub Actions>`
             } else {
                 res += `, return request status ${creationRes.status}, data: ${creationRes.data}`
             }
