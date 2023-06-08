@@ -95,10 +95,10 @@ exports.attachSlackInterface = (app, event) => {
 
             const workflows = getServiceWorkflows(serviceToDeploy)
             const getBranchRes = await getBranches(serviceToDeploy)
-            const metadata = JSON.stringify({
+            const metadata = {
                 "channel": body.view.private_metadata,
                 "service": serviceToDeploy
-            })
+            }
 
             const result = await client.views.update({
                 // Pass the view_id

@@ -1,7 +1,10 @@
 exports.renderDeploymentModal = (workflows, metadata, branches) => {
+
+    const encryptedMetadata = JSON.stringify(metadata)
+
     return {
         "type": "modal",
-        "private_metadata": metadata,
+        "private_metadata": encryptedMetadata,
         "title": {
             "type": "plain_text",
             "text": "Deployer",
@@ -19,6 +22,13 @@ exports.renderDeploymentModal = (workflows, metadata, branches) => {
         },
         callback_id: 'view_deploy_callback',
         "blocks": [
+            {
+                "type": "header",
+                "text": {
+                    "type": "plain_text",
+                    "text": `You are trying to deploy: *${metadata.service}*`
+                }
+            },
             {
                 "type": "input",
                 "block_id": "deployment_branches",
