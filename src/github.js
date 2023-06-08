@@ -10,13 +10,13 @@ module.exports.runDeployment = async (environment, branch, service) => {
     console.log(msg)
     if (workflows.workflows) {
         const workflowParam = getServiceInfo()[service]["workflowName"]
-        const regExp = RegExp(workflowParam)
+        const regExp = RegExp(workflowParam, "i")
 
-        let workFlowFile = workflows.workflows.find(element => regExp.exec(element.name));
+        let workFlowFile = workflows.workflows.find(element => regExp.exec(element.path));
         if (workFlowFile) {
             msg += `Deployment workflow found: \`${workFlowFile.name}\` \n Requesting github to run it for branch \`${branch}\` \n`
             console.log(msg)
-            msg += await runWorkflow(`${workFlowFile.name}.yml`, branch, environment)
+            msg += await runWorkflow(workFlowFile.id, branch, environment)
             console.log(msg)
         } else {
             msg += `Could not find a workflow matching \`${workflowParam}\``
@@ -76,6 +76,7 @@ exports.getBranches = async service => {
 }
 
 async function runWorkflow(name, branch, environment) {
+
     const url = `actions/workflows/${name}/dispatches`;
     let res = `Error trying to initiate workflow ${name}`
 
@@ -87,15 +88,20 @@ async function runWorkflow(name, branch, environment) {
 
         console.log(`Calling github workflow ${name} with input:`, workflowInput)
 
-        const creationRes = await axios.post(url, {
-            "ref": "refs/heads/develop",
-            "inputs": workflowInput
-        });
-        if (creationRes.status === 204) {
-            res = 'Success from Github, deployment workflow triggered successfully :bender_dance:'
-        } else {
-            res += `, return request status ${creationRes.status}, data: ${creationRes.data}`
+        try {
+            const creationRes = await axios.post(url, {
+                "ref": "refs/heads/develop",
+                "inputs": workflowInput
+            });
+            if (creationRes.status === 204) {
+                res = 'Success from Github, deployment workflow triggered successfully :bender_dance:'
+            } else {
+                res += `, return request status ${creationRes.status}, data: ${creationRes.data}`
+            }
+        } catch (err) {
+            console.log(`error calling workflow`, err)
         }
+
     } catch (e) {
         res += `, error response: ${e.message}`;
     }
