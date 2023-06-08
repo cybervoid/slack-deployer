@@ -1,4 +1,7 @@
-exports.renderDeploymentModal = (workflows, metadata, branches) => {
+const {getServiceInfo} = require("../deployer");
+let initialOptionBranch = {}
+
+exports.renderDeploymentModal = (service, metadata, branches) => {
 
     const encryptedMetadata = JSON.stringify(metadata)
 
@@ -43,6 +46,7 @@ exports.renderDeploymentModal = (workflows, metadata, branches) => {
                         "emoji": true
                     },
                     "options": renderModalBranchList(branches),
+                    "initial_option": initialOptionBranch,
                     "action_id": "branch-action"
                 },
                 "label": {
@@ -61,7 +65,7 @@ exports.renderDeploymentModal = (workflows, metadata, branches) => {
                         "text": "Select Environment",
                         "emoji": true
                     },
-                    "options": workflows,
+                    "options": getServiceWorkflows(service),
                     "action_id": "environment-action"
                 },
                 "label": {
@@ -77,13 +81,43 @@ exports.renderDeploymentModal = (workflows, metadata, branches) => {
 function renderModalBranchList(branchList) {
     const res = []
     branchList.forEach(currentElement => {
-        res.push({
+        const element = {
             "text": {
                 "type": "plain_text",
                 "text": currentElement.name,
                 "emoji": true
             },
             "value": currentElement.name
+        }
+        if (currentElement.name === "develop") {
+            initialOptionBranch = element
+        }
+        res.push(element)
+    })
+
+    return res
+}
+
+/**
+ * Organizes the dropdown to be shown with the list of apps/services
+ *
+ * @param service
+ * @returns {*}
+ */
+function getServiceWorkflows(service) {
+
+    const serviceInfo = getServiceInfo()[service][["workflows"]]
+    console.log(`Getting workflow from SupportedApps JSON`, service)
+
+    const res = []
+    serviceInfo.forEach(currentElement => {
+        res.push({
+            "text": {
+                "type": "plain_text",
+                "text": currentElement.name,
+                "emoji": true
+            },
+            "value": currentElement.value
         })
     })
 

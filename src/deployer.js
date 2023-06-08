@@ -20,32 +20,6 @@ exports.validateRequest = event => {
     return canDeploy(payload.user_id, payload.user_name)
 }
 
-/**
- * Organizes the dropdown to be shown with the list of apps/services
- *
- * @param service
- * @returns {*}
- */
-exports.getServiceWorkflows = service => {
-
-    const serviceInfo = getServiceInfo()[service][["workflows"]]
-    console.log(`Getting workflow from SupportedApps JSON`, service)
-
-    const res = []
-    serviceInfo.forEach(currentElement => {
-        res.push({
-                "text": {
-                    "type": "plain_text",
-                    "text": currentElement.name,
-                    "emoji": true
-                },
-                "value": currentElement.value
-            },
-        )
-    })
-
-    return res
-}
 
 /**
  * Gets service information from the JSON provided in the env variables
