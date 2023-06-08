@@ -23,11 +23,14 @@ exports.renderDeploymentModal = (workflows, metadata, branches) => {
         callback_id: 'view_deploy_callback',
         "blocks": [
             {
-                "type": "header",
+                "type": "section",
                 "text": {
-                    "type": "plain_text",
-                    "text": `You are trying to deploy: *${metadata.service}*`
+                    "type": "mrkdwn",
+                    "text": `Trying to deploy: *${metadata.service.toUpperCase()}* :bender_dance:`
                 }
+            },
+            {
+                "type": "divider"
             },
             {
                 "type": "input",
