@@ -5,7 +5,7 @@ module.exports.runDeployment = async (environment, branch, service) => {
 
     const workflows = await listWorkFlows();
 
-    let msg = `Deployment request received \n Fetching workflow list for *${service.toUpperCase()}* ... \n`
+    let msg = `Deployment request received \nFetching workflow list for *${service.toUpperCase()}* ... \n`
     console.log(msg)
     if (workflows.workflows) {
         const workflowParam = getServiceInfo()[service]["workflowName"]
