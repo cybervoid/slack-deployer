@@ -46,7 +46,7 @@ exports.attachSlackInterface = (app, event) => {
             } else {
                 await say(renderUnAuthorizedMessage(payload.user_name))
                 //todo get alert when someone tries to run this command
-                console.log(`Unauthorized attempt to deploy, user ${payload.user_name}`)
+                console.log(`Unauthorized attempt to deploy, user ${payload.user_name} and User Id: ${payload.user_id}`)
             }
         } else {
             await say(failedMessage)

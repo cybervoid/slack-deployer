@@ -65,7 +65,8 @@ exports.renderUnAuthorizedMessage = (user, message = null) => {
                     "text": userMsg
                 }
             }
-        ]
+        ],
+        "text": userMsg
     }
 }
 
