@@ -1,11 +1,10 @@
-const {validateRequest, canDeploy, getServiceWorkflows, healthz} = require("../deployer");
+const {validateRequest, canDeploy, getServiceWorkflows, healthz, renderUnAuthorizedMessage} = require("../deployer");
 const {renderDeploymentModal} = require('../modals/deployModal')
 const {renderSelectServiceModal} = require('../modals/selectServiceModal')
 const {runDeployment, getBranches} = require("../github")
 
 exports.attachSlackInterface = (app, event) => {
 
-    const failedValidationMessage = `Sorry, you are not allowed to run this deployment`
     console.log(`Request received`, event.isBase64Encoded === true ? Buffer.from(event.body, "base64").toString('utf-8') : event.body)
 
     // Listens to incoming messages that contain "hello"
@@ -25,25 +24,33 @@ exports.attachSlackInterface = (app, event) => {
      * Process starts here for the deployment flow
      */
     app.command('/deploy', async ({ack, body, client, logger, say}) => {
-        // Acknowledge the command request
         await ack();
 
         console.log(`Deployment requested, rendering deployment modal`)
 
-        if (validateRequest(event)) {
-            try {
-                const result = await client.views.open({
-                    trigger_id: body.trigger_id,
-                    // View payload
-                    view: renderSelectServiceModal(body.channel_id !== undefined ? body.channel_id : body.user_id)
-                });
-            } catch (error) {
-                logger.error(error);
+        const payload = validateRequest(event)
+        const failedMessage = renderUnAuthorizedMessage(payload.user_name, `Error trying to check auth access, please check back later`)
+
+        if (payload) {
+            if (canDeploy(payload.user_id, payload.user_name)) {
+                try {
+                    const result = await client.views.open({
+                        trigger_id: body.trigger_id,
+                        // View payload
+                        view: renderSelectServiceModal(body.channel_id !== undefined ? body.channel_id : body.user_id)
+                    });
+                } catch (error) {
+                    logger.error(error);
+                    await say(failedMessage)
+                }
+            } else {
+                await say(renderUnAuthorizedMessage(payload.user_name))
+                //todo get alert when someone tries to run this command
+                console.log(`Unauthorized attempt to deploy, user ${payload.user_name}`)
             }
         } else {
-            await say(failedValidationMessage)
+            await say(failedMessage)
         }
-
     });
 
     /**

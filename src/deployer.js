@@ -13,11 +13,9 @@ function canDeploy(userId, user) {
 }
 
 exports.validateRequest = event => {
-
     const decodedEventBody = Buffer.from(event.body, "base64").toString('utf-8')
-    const payload = querystring.parse(decodedEventBody)
 
-    return canDeploy(payload.user_id, payload.user_name)
+    return querystring.parse(decodedEventBody)
 }
 
 
@@ -48,6 +46,27 @@ exports.healthz = async message => {
     const approvedUsers = JSON.parse(process.env.AllowedUsers)
 
     return healthzModal(message, serviceInfo, approvedUsers)
+}
+
+exports.renderUnAuthorizedMessage = (user, message = null) => {
+
+    const userMsg = message || `*I'm sorry @${user}. I'm afraid I can't do that.*`
+    return {
+        "blocks": [
+            {
+                "type": "image",
+                "image_url": "https://static.wikia.nocookie.net/villains/images/1/1c/HAL9000_Case.svg.png/revision/latest?cb=20200411073029",
+                "alt_text": "inspiration"
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": userMsg
+                }
+            }
+        ]
+    }
 }
 
 /**
