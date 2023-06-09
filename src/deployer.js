@@ -50,7 +50,7 @@ exports.healthz = async message => {
 
 exports.renderUnAuthorizedMessage = (user, message = null) => {
 
-    const userMsg = message || `*I'm sorry @${user}. I'm afraid I can't do that.*`
+    const userMsg = message || `*I'm sorry <@${user}>! I'm afraid I can't do that.*`
     return {
         "blocks": [
             {

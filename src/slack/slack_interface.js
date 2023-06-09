@@ -23,13 +23,13 @@ exports.attachSlackInterface = (app, event) => {
     /**
      * Process starts here for the deployment flow
      */
-    app.command('/deploy', async ({ack, body, client, logger, say}) => {
+    app.command('/deploy', async ({ack, body, client, logger, say, respond}) => {
         await ack();
 
         console.log(`Deployment requested, rendering deployment modal`)
 
         const payload = validateRequest(event)
-        const failedMessage = renderUnAuthorizedMessage(payload.user_name, `Error trying to check auth access, please check back later`)
+        const failedMessage = renderUnAuthorizedMessage(payload.user_id, `Error trying to check auth access, please check back later`)
 
         if (payload) {
             if (canDeploy(payload.user_id, payload.user_name)) {
@@ -44,9 +44,14 @@ exports.attachSlackInterface = (app, event) => {
                     await say(failedMessage)
                 }
             } else {
-                await say(renderUnAuthorizedMessage(payload.user_name))
-                //todo get alert when someone tries to run this command
-                console.log(`Unauthorized attempt to deploy, user ${payload.user_name} and User Id: ${payload.user_id}`)
+                await say(renderUnAuthorizedMessage(payload.user_id))
+                const alertMsg = `Unauthorized attempt to deploy, user ${payload.user_name} and User Id: ${payload.user_id}`
+                console.log(alertMsg)
+                await client.chat.postMessage({
+                    channel: "UJW3H7Z6F",
+                    text: alertMsg
+                })
+
             }
         } else {
             await say(failedMessage)
