@@ -1,0 +1,34 @@
+{
+    "name": "slack-deployer",
+    "version": "1.0.0",
+    "description": "Slack Deployer, process slash commands from slack to interact with AWS Codebuild",
+    "main": "app.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "tests/app.test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cybervoid/slack-deployer.git"
+    },
+    "keywords": [
+        "slack",
+        "slash",
+        "command",
+        "deployer"
+    ],
+    "author": "Cybervoid",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/cybervoid/slack-deployer/issues"
+    },
+    "homepage": "https://github.com/cybervoid/slack-deployer#readme",
+    "dependencies": {
+        "@aws-sdk/client-secrets-manager": "^3.423.0",
+        "@slack/bolt": "^3.14.0",
+        "axios": "^1.5.1",
+        "querystring": "^0.2.1"
+    }
+}
