@@ -1,7 +1,7 @@
 const {getSecret, getServiceInfo, getRepoURI} = require("./deployer")
 axios = require('axios');
 
-module.exports.runDeployment = async (environment, branch, service) => {
+module.exports.runDeployment = async (user, environment, branch, service) => {
 
     const workflows = await listWorkFlows();
 
@@ -15,7 +15,7 @@ module.exports.runDeployment = async (environment, branch, service) => {
         if (workFlowFile) {
             msg += `Deployment workflow found: \`${workFlowFile.name}\` \nRequesting github to run it for branch \`${branch}\` \n`
             console.log(msg)
-            msg += await runWorkflow(workFlowFile.id, branch, environment, service)
+            msg += await runWorkflow(workFlowFile.id, branch, environment, service, user)
             console.log(msg)
         } else {
             msg += `Could not find a workflow matching \`${workflowParam}\``
@@ -74,7 +74,7 @@ exports.getBranches = async service => {
     return res
 }
 
-async function runWorkflow(name, branch, environment, service) {
+async function runWorkflow(name, branch, environment, service, user) {
 
     const url = `actions/workflows/${name}/dispatches`;
     let res = `Error trying to initiate workflow ${name}`
@@ -84,7 +84,8 @@ async function runWorkflow(name, branch, environment, service) {
     try {
         const workflowInput = {
             "branch_name": branch,
-            "environment": environment
+            "environment": environment,
+            "metadata": `Deployed via slack by: ${user}`
         }
 
         console.log(`Calling github workflow ${name} with input:`, workflowInput)

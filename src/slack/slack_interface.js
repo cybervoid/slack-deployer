@@ -77,10 +77,10 @@ exports.attachSlackInterface = (app, event) => {
 
         try {
             if (canDeploy(userId, user)) {
-                msg = await runDeployment(environment, branch, metadata.service).catch(err => console.log(msg, err))
+                msg = await runDeployment(user, environment, branch, metadata.service).catch(err => console.log(msg, err))
                 console.log(`Debug Data`, msg)
             } else {
-                msg = failedValidationMessage
+                msg = ''
                 console.log(`Alert!! user tried to deploy while not allowed. User: ${user} with ID: ${userId}`)
             }
         } catch (error) {
